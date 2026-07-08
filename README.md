@@ -33,6 +33,7 @@ To run the flow on your local OpenLane environment:
 * **Timing:** Single-Corner and Multi-Corner Static Timing Analysis (STA) passed.
 * **Clock Tree Synthesis (CTS):** Successfully balanced with minimal skew.
 * **Physical Verification:** Magic DRC and Netgen LVS clean.
+<img width="1836" height="870" alt="GDS_file" src="https://github.com/user-attachments/assets/e7db90c6-7435-4ba0-b45b-a3e8b02678c5" />
 
 ---
 *I am always looking to learn and improve. I would greatly appreciate any feedback, suggestions, or best practices regarding ASIC physical design from the VLSI community!*
