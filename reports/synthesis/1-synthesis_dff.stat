@@ -1,0 +1,27 @@
+
+55. Printing statistics.
+
+=== conv2d_accel ===
+
+   Number of wires:              14139
+   Number of wire bits:          17694
+   Number of public wires:         496
+   Number of public wire bits:    3944
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:              17547
+     $_ANDNOT_                     716
+     $_AND_                        118
+     $_MUX_                      11703
+     $_NAND_                        60
+     $_NOR_                         31
+     $_NOT_                        104
+     $_ORNOT_                       68
+     $_OR_                         645
+     $_XNOR_                        43
+     $_XOR_                        223
+     sky130_fd_sc_hd__dfrtp_2       59
+     sky130_fd_sc_hd__dfstp_2        1
+     sky130_fd_sc_hd__dfxtp_2     3776
+

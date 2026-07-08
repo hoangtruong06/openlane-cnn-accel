@@ -1,0 +1,12 @@
+ABC: Warning: Detected 2 multi-output gates (for example, "sky130_fd_sc_hd__fa_1").
+Warning: Wire conv2d_accel.\wr_ready is used but has no driver.
+Warning: Wire conv2d_accel.\rd_valid is used but has no driver.
+Warning: Wire conv2d_accel.\rd_data [7] is used but has no driver.
+Warning: Wire conv2d_accel.\rd_data [6] is used but has no driver.
+Warning: Wire conv2d_accel.\rd_data [5] is used but has no driver.
+Warning: Wire conv2d_accel.\rd_data [4] is used but has no driver.
+Warning: Wire conv2d_accel.\rd_data [3] is used but has no driver.
+Warning: Wire conv2d_accel.\rd_data [2] is used but has no driver.
+Warning: Wire conv2d_accel.\rd_data [1] is used but has no driver.
+Warning: Wire conv2d_accel.\rd_data [0] is used but has no driver.
+Warnings: 10 unique messages, 10 total

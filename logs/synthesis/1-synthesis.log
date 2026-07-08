@@ -1,0 +1,2245 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.30+48 (git sha1 14d50a176d5, gcc 8.3.1 -fPIC -Os)
+
+[TCL: yosys -import] Command name collision: found pre-existing command `cd' -> skip.
+[TCL: yosys -import] Command name collision: found pre-existing command `eval' -> skip.
+[TCL: yosys -import] Command name collision: found pre-existing command `exec' -> skip.
+[TCL: yosys -import] Command name collision: found pre-existing command `read' -> skip.
+[TCL: yosys -import] Command name collision: found pre-existing command `trace' -> skip.
+
+1. Executing Verilog-2005 frontend: /openlane/designs/CNN_acc/src/simple_sram.v
+Parsing SystemVerilog input from `/openlane/designs/CNN_acc/src/simple_sram.v' to AST representation.
+Generating RTLIL representation for module `\simple_sram'.
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: /openlane/designs/CNN_acc/src/conv_engine.v
+Parsing SystemVerilog input from `/openlane/designs/CNN_acc/src/conv_engine.v' to AST representation.
+Generating RTLIL representation for module `\conv_engine'.
+Successfully finished Verilog frontend.
+
+3. Executing Verilog-2005 frontend: /openlane/designs/CNN_acc/src/conv2d_accel.v
+Parsing SystemVerilog input from `/openlane/designs/CNN_acc/src/conv2d_accel.v' to AST representation.
+Generating RTLIL representation for module `\conv2d_accel'.
+Successfully finished Verilog frontend.
+
+4. Generating Graphviz representation of design.
+Writing dot description to `/openlane/designs/CNN_acc/runs/RUN_adjust2/tmp/synthesis/hierarchy.dot'.
+Dumping module conv2d_accel to page 1.
+
+5. Executing HIERARCHY pass (managing design hierarchy).
+
+5.1. Analyzing design hierarchy..
+Top module:  \conv2d_accel
+Used module:     \conv_engine
+Used module:     \simple_sram
+Parameter \H = 16
+Parameter \W = 16
+Parameter \K = 3
+Parameter \PIXEL_W = 8
+Parameter \ACC_W = 32
+
+5.2. Executing AST frontend in derive mode using pre-parsed AST for module `\conv_engine'.
+Parameter \H = 16
+Parameter \W = 16
+Parameter \K = 3
+Parameter \PIXEL_W = 8
+Parameter \ACC_W = 32
+Generating RTLIL representation for module `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine'.
+Parameter \DEPTH = 196
+Parameter \WR_W = 8
+Parameter \K = 3
+
+5.3. Executing AST frontend in derive mode using pre-parsed AST for module `\simple_sram'.
+Parameter \DEPTH = 196
+Parameter \WR_W = 8
+Parameter \K = 3
+Generating RTLIL representation for module `$paramod$cb7a936919e9f6e3ab52524c7dfccfad9fdfef80\simple_sram'.
+Parameter \DEPTH = 9
+Parameter \WR_W = 8
+Parameter \K = 3
+
+5.4. Executing AST frontend in derive mode using pre-parsed AST for module `\simple_sram'.
+Parameter \DEPTH = 9
+Parameter \WR_W = 8
+Parameter \K = 3
+Generating RTLIL representation for module `$paramod$b7411f494884155319d913323834f5f2695e77dc\simple_sram'.
+Parameter \DEPTH = 256
+Parameter \WR_W = 8
+Parameter \K = 3
+
+5.5. Executing AST frontend in derive mode using pre-parsed AST for module `\simple_sram'.
+Parameter \DEPTH = 256
+Parameter \WR_W = 8
+Parameter \K = 3
+Generating RTLIL representation for module `$paramod$da04101be6e47c15c4c607d0322b02dd2f5b037d\simple_sram'.
+
+5.6. Analyzing design hierarchy..
+Top module:  \conv2d_accel
+Used module:     $paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine
+Used module:     $paramod$cb7a936919e9f6e3ab52524c7dfccfad9fdfef80\simple_sram
+Used module:     $paramod$b7411f494884155319d913323834f5f2695e77dc\simple_sram
+Used module:     $paramod$da04101be6e47c15c4c607d0322b02dd2f5b037d\simple_sram
+
+5.7. Analyzing design hierarchy..
+Top module:  \conv2d_accel
+Used module:     $paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine
+Used module:     $paramod$cb7a936919e9f6e3ab52524c7dfccfad9fdfef80\simple_sram
+Used module:     $paramod$b7411f494884155319d913323834f5f2695e77dc\simple_sram
+Used module:     $paramod$da04101be6e47c15c4c607d0322b02dd2f5b037d\simple_sram
+Removing unused module `\conv_engine'.
+Removing unused module `\simple_sram'.
+Removed 2 unused modules.
+
+6. Executing TRIBUF pass.
+
+7. Executing HIERARCHY pass (managing design hierarchy).
+
+7.1. Analyzing design hierarchy..
+Top module:  \conv2d_accel
+Used module:     $paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine
+Used module:     $paramod$cb7a936919e9f6e3ab52524c7dfccfad9fdfef80\simple_sram
+Used module:     $paramod$b7411f494884155319d913323834f5f2695e77dc\simple_sram
+Used module:     $paramod$da04101be6e47c15c4c607d0322b02dd2f5b037d\simple_sram
+
+7.2. Analyzing design hierarchy..
+Top module:  \conv2d_accel
+Used module:     $paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine
+Used module:     $paramod$cb7a936919e9f6e3ab52524c7dfccfad9fdfef80\simple_sram
+Used module:     $paramod$b7411f494884155319d913323834f5f2695e77dc\simple_sram
+Used module:     $paramod$da04101be6e47c15c4c607d0322b02dd2f5b037d\simple_sram
+Removed 0 unused modules.
+
+8. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+9. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$/openlane/designs/CNN_acc/src/simple_sram.v:22$121 in module $paramod$cb7a936919e9f6e3ab52524c7dfccfad9fdfef80\simple_sram.
+Marked 4 switch rules as full_case in process $proc$/openlane/designs/CNN_acc/src/conv_engine.v:74$87 in module $paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.
+Marked 4 switch rules as full_case in process $proc$/openlane/designs/CNN_acc/src/conv_engine.v:58$82 in module $paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.
+Marked 1 switch rules as full_case in process $proc$/openlane/designs/CNN_acc/src/conv_engine.v:53$81 in module $paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.
+Marked 4 switch rules as full_case in process $proc$/openlane/designs/CNN_acc/src/conv2d_accel.v:116$73 in module conv2d_accel.
+Marked 2 switch rules as full_case in process $proc$/openlane/designs/CNN_acc/src/conv2d_accel.v:99$71 in module conv2d_accel.
+Marked 3 switch rules as full_case in process $proc$/openlane/designs/CNN_acc/src/conv2d_accel.v:80$61 in module conv2d_accel.
+Marked 1 switch rules as full_case in process $proc$/openlane/designs/CNN_acc/src/simple_sram.v:22$175 in module $paramod$da04101be6e47c15c4c607d0322b02dd2f5b037d\simple_sram.
+Marked 1 switch rules as full_case in process $proc$/openlane/designs/CNN_acc/src/simple_sram.v:22$148 in module $paramod$b7411f494884155319d913323834f5f2695e77dc\simple_sram.
+Removed a total of 0 dead cases.
+
+10. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 8 redundant assignments.
+Promoted 28 assignments to connections.
+
+11. Executing PROC_INIT pass (extract init attributes).
+
+12. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst in `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:74$87'.
+Found async reset \rst in `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:53$81'.
+Found async reset \rst in `\conv2d_accel.$proc$/openlane/designs/CNN_acc/src/conv2d_accel.v:116$73'.
+Found async reset \rst in `\conv2d_accel.$proc$/openlane/designs/CNN_acc/src/conv2d_accel.v:99$71'.
+Found async reset \rst in `\conv2d_accel.$proc$/openlane/designs/CNN_acc/src/conv2d_accel.v:80$61'.
+
+13. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~23 debug messages>
+
+14. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `$paramod$cb7a936919e9f6e3ab52524c7dfccfad9fdfef80\simple_sram.$proc$/openlane/designs/CNN_acc/src/simple_sram.v:22$121'.
+     1/3: $1$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$112_EN[7:0]$127
+     2/3: $1$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$112_DATA[7:0]$126
+     3/3: $1$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$112_ADDR[7:0]$125
+Creating decoders for process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:0$108'.
+Creating decoders for process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:74$87'.
+     1/10: $0\output_wr_en[0:0]
+     2/10: $0\acc[31:0]
+     3/10: $0\ki[1:0]
+     4/10: $0\out_col[3:0]
+     5/10: $0\out_row[3:0]
+     6/10: $0\done[0:0]
+     7/10: $0\output_wr_data[7:0]
+     8/10: $0\output_wr_addr[7:0]
+     9/10: $0\kernel_rd_addr[3:0]
+    10/10: $0\input_rd_addr[7:0]
+Creating decoders for process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:58$82'.
+     1/4: $4\next_state[2:0]
+     2/4: $3\next_state[2:0]
+     3/4: $2\next_state[2:0]
+     4/4: $1\next_state[2:0]
+Creating decoders for process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:53$81'.
+     1/1: $0\state[2:0]
+Creating decoders for process `\conv2d_accel.$proc$/openlane/designs/CNN_acc/src/conv2d_accel.v:116$73'.
+     1/4: $0\rd_valid[0:0]
+     2/4: $0\rd_en_d[0:0]
+     3/4: $0\rd_addr_d[15:0]
+     4/4: $0\rd_data[7:0]
+Creating decoders for process `\conv2d_accel.$proc$/openlane/designs/CNN_acc/src/conv2d_accel.v:99$71'.
+     1/2: $0\cycle_count[31:0]
+     2/2: $0\counting[0:0]
+Creating decoders for process `\conv2d_accel.$proc$/openlane/designs/CNN_acc/src/conv2d_accel.v:80$61'.
+     1/4: $0\kernel_sram_wr_en[0:0]
+     2/4: $0\input_sram_wr_en[0:0]
+     3/4: $0\start_pulse[0:0]
+     4/4: $0\wr_ready[0:0]
+Creating decoders for process `$paramod$da04101be6e47c15c4c607d0322b02dd2f5b037d\simple_sram.$proc$/openlane/designs/CNN_acc/src/simple_sram.v:22$175'.
+     1/3: $1$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$166_EN[7:0]$181
+     2/3: $1$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$166_DATA[7:0]$180
+     3/3: $1$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$166_ADDR[7:0]$179
+Creating decoders for process `$paramod$b7411f494884155319d913323834f5f2695e77dc\simple_sram.$proc$/openlane/designs/CNN_acc/src/simple_sram.v:22$148'.
+     1/3: $1$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$139_EN[7:0]$154
+     2/3: $1$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$139_DATA[7:0]$153
+     3/3: $1$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$139_ADDR[3:0]$152
+
+15. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.\in_p[0]' from process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:0$108'.
+No latch inferred for signal `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.\in_p[1]' from process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:0$108'.
+No latch inferred for signal `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.\in_p[2]' from process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:0$108'.
+No latch inferred for signal `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.\k_p[0]' from process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:0$108'.
+No latch inferred for signal `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.\k_p[1]' from process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:0$108'.
+No latch inferred for signal `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.\k_p[2]' from process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:0$108'.
+No latch inferred for signal `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.\mult[0]' from process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:0$108'.
+No latch inferred for signal `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.\mult[1]' from process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:0$108'.
+No latch inferred for signal `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.\mult[2]' from process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:0$108'.
+No latch inferred for signal `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.\next_state' from process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:58$82'.
+
+16. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `$paramod$cb7a936919e9f6e3ab52524c7dfccfad9fdfef80\simple_sram.\rd_data' using process `$paramod$cb7a936919e9f6e3ab52524c7dfccfad9fdfef80\simple_sram.$proc$/openlane/designs/CNN_acc/src/simple_sram.v:22$121'.
+  created $dff cell `$procdff$372' with positive edge clock.
+Creating register for signal `$paramod$cb7a936919e9f6e3ab52524c7dfccfad9fdfef80\simple_sram.$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$112_ADDR' using process `$paramod$cb7a936919e9f6e3ab52524c7dfccfad9fdfef80\simple_sram.$proc$/openlane/designs/CNN_acc/src/simple_sram.v:22$121'.
+  created $dff cell `$procdff$373' with positive edge clock.
+Creating register for signal `$paramod$cb7a936919e9f6e3ab52524c7dfccfad9fdfef80\simple_sram.$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$112_DATA' using process `$paramod$cb7a936919e9f6e3ab52524c7dfccfad9fdfef80\simple_sram.$proc$/openlane/designs/CNN_acc/src/simple_sram.v:22$121'.
+  created $dff cell `$procdff$374' with positive edge clock.
+Creating register for signal `$paramod$cb7a936919e9f6e3ab52524c7dfccfad9fdfef80\simple_sram.$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$112_EN' using process `$paramod$cb7a936919e9f6e3ab52524c7dfccfad9fdfef80\simple_sram.$proc$/openlane/designs/CNN_acc/src/simple_sram.v:22$121'.
+  created $dff cell `$procdff$375' with positive edge clock.
+Creating register for signal `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.\input_rd_addr' using process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:74$87'.
+  created $adff cell `$procdff$376' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.\kernel_rd_addr' using process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:74$87'.
+  created $adff cell `$procdff$377' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.\output_wr_en' using process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:74$87'.
+  created $adff cell `$procdff$378' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.\output_wr_addr' using process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:74$87'.
+  created $dff cell `$procdff$381' with positive edge clock.
+Creating register for signal `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.\output_wr_data' using process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:74$87'.
+  created $dff cell `$procdff$384' with positive edge clock.
+Creating register for signal `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.\done' using process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:74$87'.
+  created $adff cell `$procdff$385' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.\out_row' using process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:74$87'.
+  created $adff cell `$procdff$386' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.\out_col' using process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:74$87'.
+  created $adff cell `$procdff$387' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.\ki' using process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:74$87'.
+  created $adff cell `$procdff$388' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.\acc' using process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:74$87'.
+  created $adff cell `$procdff$389' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.\state' using process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:53$81'.
+  created $adff cell `$procdff$390' with positive edge clock and positive level reset.
+Creating register for signal `\conv2d_accel.\rd_data' using process `\conv2d_accel.$proc$/openlane/designs/CNN_acc/src/conv2d_accel.v:116$73'.
+  created $adff cell `$procdff$391' with positive edge clock and positive level reset.
+Creating register for signal `\conv2d_accel.\rd_valid' using process `\conv2d_accel.$proc$/openlane/designs/CNN_acc/src/conv2d_accel.v:116$73'.
+  created $adff cell `$procdff$392' with positive edge clock and positive level reset.
+Creating register for signal `\conv2d_accel.\rd_en_d' using process `\conv2d_accel.$proc$/openlane/designs/CNN_acc/src/conv2d_accel.v:116$73'.
+  created $adff cell `$procdff$393' with positive edge clock and positive level reset.
+Creating register for signal `\conv2d_accel.\rd_addr_d' using process `\conv2d_accel.$proc$/openlane/designs/CNN_acc/src/conv2d_accel.v:116$73'.
+  created $dff cell `$procdff$396' with positive edge clock.
+Creating register for signal `\conv2d_accel.\counting' using process `\conv2d_accel.$proc$/openlane/designs/CNN_acc/src/conv2d_accel.v:99$71'.
+  created $adff cell `$procdff$397' with positive edge clock and positive level reset.
+Creating register for signal `\conv2d_accel.\cycle_count' using process `\conv2d_accel.$proc$/openlane/designs/CNN_acc/src/conv2d_accel.v:99$71'.
+  created $adff cell `$procdff$398' with positive edge clock and positive level reset.
+Creating register for signal `\conv2d_accel.\wr_ready' using process `\conv2d_accel.$proc$/openlane/designs/CNN_acc/src/conv2d_accel.v:80$61'.
+  created $adff cell `$procdff$399' with positive edge clock and positive level reset.
+Creating register for signal `\conv2d_accel.\start_pulse' using process `\conv2d_accel.$proc$/openlane/designs/CNN_acc/src/conv2d_accel.v:80$61'.
+  created $adff cell `$procdff$400' with positive edge clock and positive level reset.
+Creating register for signal `\conv2d_accel.\input_sram_wr_en' using process `\conv2d_accel.$proc$/openlane/designs/CNN_acc/src/conv2d_accel.v:80$61'.
+  created $adff cell `$procdff$401' with positive edge clock and positive level reset.
+Creating register for signal `\conv2d_accel.\kernel_sram_wr_en' using process `\conv2d_accel.$proc$/openlane/designs/CNN_acc/src/conv2d_accel.v:80$61'.
+  created $adff cell `$procdff$402' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$da04101be6e47c15c4c607d0322b02dd2f5b037d\simple_sram.\rd_data' using process `$paramod$da04101be6e47c15c4c607d0322b02dd2f5b037d\simple_sram.$proc$/openlane/designs/CNN_acc/src/simple_sram.v:22$175'.
+  created $dff cell `$procdff$403' with positive edge clock.
+Creating register for signal `$paramod$da04101be6e47c15c4c607d0322b02dd2f5b037d\simple_sram.$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$166_ADDR' using process `$paramod$da04101be6e47c15c4c607d0322b02dd2f5b037d\simple_sram.$proc$/openlane/designs/CNN_acc/src/simple_sram.v:22$175'.
+  created $dff cell `$procdff$404' with positive edge clock.
+Creating register for signal `$paramod$da04101be6e47c15c4c607d0322b02dd2f5b037d\simple_sram.$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$166_DATA' using process `$paramod$da04101be6e47c15c4c607d0322b02dd2f5b037d\simple_sram.$proc$/openlane/designs/CNN_acc/src/simple_sram.v:22$175'.
+  created $dff cell `$procdff$405' with positive edge clock.
+Creating register for signal `$paramod$da04101be6e47c15c4c607d0322b02dd2f5b037d\simple_sram.$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$166_EN' using process `$paramod$da04101be6e47c15c4c607d0322b02dd2f5b037d\simple_sram.$proc$/openlane/designs/CNN_acc/src/simple_sram.v:22$175'.
+  created $dff cell `$procdff$406' with positive edge clock.
+Creating register for signal `$paramod$b7411f494884155319d913323834f5f2695e77dc\simple_sram.\rd_data' using process `$paramod$b7411f494884155319d913323834f5f2695e77dc\simple_sram.$proc$/openlane/designs/CNN_acc/src/simple_sram.v:22$148'.
+  created $dff cell `$procdff$407' with positive edge clock.
+Creating register for signal `$paramod$b7411f494884155319d913323834f5f2695e77dc\simple_sram.$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$139_ADDR' using process `$paramod$b7411f494884155319d913323834f5f2695e77dc\simple_sram.$proc$/openlane/designs/CNN_acc/src/simple_sram.v:22$148'.
+  created $dff cell `$procdff$408' with positive edge clock.
+Creating register for signal `$paramod$b7411f494884155319d913323834f5f2695e77dc\simple_sram.$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$139_DATA' using process `$paramod$b7411f494884155319d913323834f5f2695e77dc\simple_sram.$proc$/openlane/designs/CNN_acc/src/simple_sram.v:22$148'.
+  created $dff cell `$procdff$409' with positive edge clock.
+Creating register for signal `$paramod$b7411f494884155319d913323834f5f2695e77dc\simple_sram.$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$139_EN' using process `$paramod$b7411f494884155319d913323834f5f2695e77dc\simple_sram.$proc$/openlane/designs/CNN_acc/src/simple_sram.v:22$148'.
+  created $dff cell `$procdff$410' with positive edge clock.
+
+17. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+18. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `$paramod$cb7a936919e9f6e3ab52524c7dfccfad9fdfef80\simple_sram.$proc$/openlane/designs/CNN_acc/src/simple_sram.v:22$121'.
+Removing empty process `$paramod$cb7a936919e9f6e3ab52524c7dfccfad9fdfef80\simple_sram.$proc$/openlane/designs/CNN_acc/src/simple_sram.v:22$121'.
+Removing empty process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:0$108'.
+Found and cleaned up 5 empty switches in `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:74$87'.
+Removing empty process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:74$87'.
+Found and cleaned up 4 empty switches in `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:58$82'.
+Removing empty process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:58$82'.
+Removing empty process `$paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.$proc$/openlane/designs/CNN_acc/src/conv_engine.v:53$81'.
+Found and cleaned up 4 empty switches in `\conv2d_accel.$proc$/openlane/designs/CNN_acc/src/conv2d_accel.v:116$73'.
+Removing empty process `conv2d_accel.$proc$/openlane/designs/CNN_acc/src/conv2d_accel.v:116$73'.
+Found and cleaned up 3 empty switches in `\conv2d_accel.$proc$/openlane/designs/CNN_acc/src/conv2d_accel.v:99$71'.
+Removing empty process `conv2d_accel.$proc$/openlane/designs/CNN_acc/src/conv2d_accel.v:99$71'.
+Found and cleaned up 4 empty switches in `\conv2d_accel.$proc$/openlane/designs/CNN_acc/src/conv2d_accel.v:80$61'.
+Removing empty process `conv2d_accel.$proc$/openlane/designs/CNN_acc/src/conv2d_accel.v:80$61'.
+Found and cleaned up 1 empty switch in `$paramod$da04101be6e47c15c4c607d0322b02dd2f5b037d\simple_sram.$proc$/openlane/designs/CNN_acc/src/simple_sram.v:22$175'.
+Removing empty process `$paramod$da04101be6e47c15c4c607d0322b02dd2f5b037d\simple_sram.$proc$/openlane/designs/CNN_acc/src/simple_sram.v:22$175'.
+Found and cleaned up 1 empty switch in `$paramod$b7411f494884155319d913323834f5f2695e77dc\simple_sram.$proc$/openlane/designs/CNN_acc/src/simple_sram.v:22$148'.
+Removing empty process `$paramod$b7411f494884155319d913323834f5f2695e77dc\simple_sram.$proc$/openlane/designs/CNN_acc/src/simple_sram.v:22$148'.
+Cleaned up 23 empty switches.
+
+19. Executing CHECK pass (checking for obvious problems).
+Checking module $paramod$cb7a936919e9f6e3ab52524c7dfccfad9fdfef80\simple_sram...
+Checking module $paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine...
+Checking module conv2d_accel...
+Checking module $paramod$da04101be6e47c15c4c607d0322b02dd2f5b037d\simple_sram...
+Checking module $paramod$b7411f494884155319d913323834f5f2695e77dc\simple_sram...
+Found and reported 0 problems.
+
+20. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$cb7a936919e9f6e3ab52524c7dfccfad9fdfef80\simple_sram.
+Optimizing module $paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.
+<suppressed ~16 debug messages>
+Optimizing module conv2d_accel.
+Optimizing module $paramod$da04101be6e47c15c4c607d0322b02dd2f5b037d\simple_sram.
+Optimizing module $paramod$b7411f494884155319d913323834f5f2695e77dc\simple_sram.
+
+21. Executing FLATTEN pass (flatten design).
+Deleting now unused module $paramod$cb7a936919e9f6e3ab52524c7dfccfad9fdfef80\simple_sram.
+Deleting now unused module $paramod$488414bdc8354d4dc641363d3d22ab106370b079\conv_engine.
+Deleting now unused module $paramod$da04101be6e47c15c4c607d0322b02dd2f5b037d\simple_sram.
+Deleting now unused module $paramod$b7411f494884155319d913323834f5f2695e77dc\simple_sram.
+<suppressed ~4 debug messages>
+
+22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module conv2d_accel.
+
+23. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \conv2d_accel..
+Removed 9 unused cells and 121 unused wires.
+<suppressed ~10 debug messages>
+
+24. Executing OPT pass (performing simple optimizations).
+
+24.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module conv2d_accel.
+
+24.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\conv2d_accel'.
+<suppressed ~141 debug messages>
+Removed a total of 47 cells.
+
+24.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \conv2d_accel..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $flatten\engine.$procmux$281.
+    dead port 2/2 on $mux $flatten\engine.$procmux$289.
+    dead port 2/2 on $mux $flatten\engine.$procmux$299.
+Removed 3 multiplexer ports.
+<suppressed ~43 debug messages>
+
+24.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \conv2d_accel.
+    New ctrl vector for $pmux cell $flatten\engine.$procmux$206: { $flatten\engine.$procmux$208_CMP $auto$opt_reduce.cc:134:opt_pmux$415 }
+    Consolidated identical input bits for $mux cell $flatten\input_sram.$procmux$355:
+      Old ports: A=8'00000000, B=8'11111111, Y=$flatten\input_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$166_EN[7:0]$178
+      New ports: A=1'0, B=1'1, Y=$flatten\input_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$166_EN[7:0]$178 [0]
+      New connections: $flatten\input_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$166_EN[7:0]$178 [7:1] = { $flatten\input_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$166_EN[7:0]$178 [0] $flatten\input_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$166_EN[7:0]$178 [0] $flatten\input_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$166_EN[7:0]$178 [0] $flatten\input_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$166_EN[7:0]$178 [0] $flatten\input_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$166_EN[7:0]$178 [0] $flatten\input_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$166_EN[7:0]$178 [0] $flatten\input_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$166_EN[7:0]$178 [0] }
+    Consolidated identical input bits for $mux cell $flatten\kernel_sram.$procmux$364:
+      Old ports: A=8'00000000, B=8'11111111, Y=$flatten\kernel_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$139_EN[7:0]$151
+      New ports: A=1'0, B=1'1, Y=$flatten\kernel_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$139_EN[7:0]$151 [0]
+      New connections: $flatten\kernel_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$139_EN[7:0]$151 [7:1] = { $flatten\kernel_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$139_EN[7:0]$151 [0] $flatten\kernel_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$139_EN[7:0]$151 [0] $flatten\kernel_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$139_EN[7:0]$151 [0] $flatten\kernel_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$139_EN[7:0]$151 [0] $flatten\kernel_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$139_EN[7:0]$151 [0] $flatten\kernel_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$139_EN[7:0]$151 [0] $flatten\kernel_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$139_EN[7:0]$151 [0] }
+    Consolidated identical input bits for $mux cell $flatten\output_sram.$procmux$194:
+      Old ports: A=8'00000000, B=8'11111111, Y=$flatten\output_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$112_EN[7:0]$124
+      New ports: A=1'0, B=1'1, Y=$flatten\output_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$112_EN[7:0]$124 [0]
+      New connections: $flatten\output_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$112_EN[7:0]$124 [7:1] = { $flatten\output_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$112_EN[7:0]$124 [0] $flatten\output_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$112_EN[7:0]$124 [0] $flatten\output_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$112_EN[7:0]$124 [0] $flatten\output_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$112_EN[7:0]$124 [0] $flatten\output_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$112_EN[7:0]$124 [0] $flatten\output_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$112_EN[7:0]$124 [0] $flatten\output_sram.$0$memwr$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:25$112_EN[7:0]$124 [0] }
+  Optimizing cells in module \conv2d_accel.
+Performed a total of 4 changes.
+
+24.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\conv2d_accel'.
+Removed a total of 0 cells.
+
+24.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+24.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \conv2d_accel..
+Removed 0 unused cells and 50 unused wires.
+<suppressed ~1 debug messages>
+
+24.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module conv2d_accel.
+
+24.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+24.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \conv2d_accel..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~43 debug messages>
+
+24.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \conv2d_accel.
+Performed a total of 0 changes.
+
+24.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\conv2d_accel'.
+Removed a total of 0 cells.
+
+24.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+24.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \conv2d_accel..
+
+24.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module conv2d_accel.
+
+24.16. Finished OPT passes. (There is nothing left to do.)
+
+25. Executing FSM pass (extract and optimize FSM).
+
+25.1. Executing FSM_DETECT pass (finding FSMs in design).
+Found FSM state register conv2d_accel.engine.state.
+
+25.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+Extracting FSM `\engine.state' from module `\conv2d_accel'.
+  found $adff cell for state register: $flatten\engine.$procdff$390
+  root of input selection tree: \engine.next_state
+  found reset state: 3'000 (from async reset)
+  found ctrl input: $flatten\engine.$procmux$236_CMP
+  found ctrl input: $flatten\engine.$procmux$204_CMP
+  found ctrl input: $flatten\engine.$procmux$208_CMP
+  found ctrl input: $flatten\engine.$procmux$306_CMP
+  found ctrl input: $flatten\engine.$procmux$209_CMP
+  found state code: 3'100
+  found ctrl input: $flatten\engine.$logic_and$/openlane/designs/CNN_acc/src/conv_engine.v:64$86_Y
+  found state code: 3'001
+  found ctrl input: $flatten\engine.$eq$/openlane/designs/CNN_acc/src/conv_engine.v:63$83_Y
+  found state code: 3'011
+  found state code: 3'010
+  found ctrl input: \start_pulse
+  found ctrl output: $flatten\engine.$procmux$306_CMP
+  found ctrl output: $flatten\engine.$procmux$236_CMP
+  found ctrl output: $flatten\engine.$procmux$209_CMP
+  found ctrl output: $flatten\engine.$procmux$208_CMP
+  found ctrl output: $flatten\engine.$procmux$204_CMP
+  ctrl inputs: { $flatten\engine.$eq$/openlane/designs/CNN_acc/src/conv_engine.v:63$83_Y $flatten\engine.$logic_and$/openlane/designs/CNN_acc/src/conv_engine.v:64$86_Y \start_pulse }
+  ctrl outputs: { \engine.next_state $flatten\engine.$procmux$204_CMP $flatten\engine.$procmux$208_CMP $flatten\engine.$procmux$209_CMP $flatten\engine.$procmux$236_CMP $flatten\engine.$procmux$306_CMP }
+  transition:      3'000 3'--0 ->      3'000 8'00000100
+  transition:      3'000 3'--1 ->      3'001 8'00100100
+  transition:      3'100 3'--- ->      3'100 8'10000010
+  transition:      3'010 3'0-- ->      3'001 8'00101000
+  transition:      3'010 3'1-- ->      3'011 8'01101000
+  transition:      3'001 3'--- ->      3'010 8'01000001
+  transition:      3'011 3'-0- ->      3'001 8'00110000
+  transition:      3'011 3'-1- ->      3'100 8'10010000
+
+25.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+Optimizing FSM `$fsm$\engine.state$416' from module `\conv2d_accel'.
+
+25.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \conv2d_accel..
+Removed 10 unused cells and 10 unused wires.
+<suppressed ~11 debug messages>
+
+25.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+Optimizing FSM `$fsm$\engine.state$416' from module `\conv2d_accel'.
+  Removing unused output signal $flatten\engine.$procmux$306_CMP.
+  Removing unused output signal \engine.next_state [0].
+  Removing unused output signal \engine.next_state [1].
+  Removing unused output signal \engine.next_state [2].
+
+25.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+Recoding FSM `$fsm$\engine.state$416' from module `\conv2d_accel' using `auto' encoding:
+  mapping auto encoding to `one-hot` for this FSM.
+  000 -> ----1
+  100 -> ---1-
+  010 -> --1--
+  001 -> -1---
+  011 -> 1----
+
+25.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+FSM `$fsm$\engine.state$416' from module `conv2d_accel':
+-------------------------------------
+
+  Information on FSM $fsm$\engine.state$416 (\engine.state):
+
+  Number of input signals:    3
+  Number of output signals:   4
+  Number of state bits:       5
+
+  Input signals:
+    0: \start_pulse
+    1: $flatten\engine.$logic_and$/openlane/designs/CNN_acc/src/conv_engine.v:64$86_Y
+    2: $flatten\engine.$eq$/openlane/designs/CNN_acc/src/conv_engine.v:63$83_Y
+
+  Output signals:
+    0: $flatten\engine.$procmux$236_CMP
+    1: $flatten\engine.$procmux$209_CMP
+    2: $flatten\engine.$procmux$208_CMP
+    3: $flatten\engine.$procmux$204_CMP
+
+  State encoding:
+    0:    5'----1  <RESET STATE>
+    1:    5'---1-
+    2:    5'--1--
+    3:    5'-1---
+    4:    5'1----
+
+  Transition Table (state_in, ctrl_in, state_out, ctrl_out):
+      0:     0 3'--0   ->     0 4'0010
+      1:     0 3'--1   ->     3 4'0010
+      2:     1 3'---   ->     1 4'0001
+      3:     2 3'0--   ->     3 4'0100
+      4:     2 3'1--   ->     4 4'0100
+      5:     3 3'---   ->     2 4'0000
+      6:     4 3'-1-   ->     1 4'1000
+      7:     4 3'-0-   ->     3 4'1000
+
+-------------------------------------
+
+25.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+Mapping FSM `$fsm$\engine.state$416' from module `\conv2d_accel'.
+
+26. Executing OPT pass (performing simple optimizations).
+
+26.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module conv2d_accel.
+<suppressed ~6 debug messages>
+
+26.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\conv2d_accel'.
+Removed a total of 0 cells.
+
+26.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \conv2d_accel..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~42 debug messages>
+
+26.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \conv2d_accel.
+Performed a total of 0 changes.
+
+26.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\conv2d_accel'.
+Removed a total of 0 cells.
+
+26.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $procdff$398 ($adff) from module conv2d_accel (D = $0\cycle_count[31:0], Q = \cycle_count).
+Adding EN signal on $procdff$397 ($adff) from module conv2d_accel (D = $0\counting[0:0], Q = \counting).
+Adding EN signal on $procdff$396 ($dff) from module conv2d_accel (D = \rd_addr, Q = \rd_addr_d).
+Adding EN signal on $procdff$391 ($adff) from module conv2d_accel (D = $procmux$315_Y, Q = \rd_data).
+Adding SRST signal on $flatten\output_sram.$procdff$372 ($dff) from module conv2d_accel (D = $flatten\output_sram.$memrd$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:29$129_DATA, Q = \output_sram.rd_data [7:0], rval = 8'00000000).
+Adding SRST signal on $flatten\output_sram.$procdff$372 ($dff) from module conv2d_accel (D = $flatten\output_sram.$memrd$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:31$137_DATA, Q = \output_sram.rd_data [23:16], rval = 8'00000000).
+Adding SRST signal on $flatten\output_sram.$procdff$372 ($dff) from module conv2d_accel (D = $flatten\output_sram.$memrd$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:30$133_DATA, Q = \output_sram.rd_data [15:8], rval = 8'00000000).
+Adding SRST signal on $flatten\kernel_sram.$procdff$407 ($dff) from module conv2d_accel (D = $flatten\kernel_sram.$memrd$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:29$156_DATA, Q = \kernel_sram.rd_data [7:0], rval = 8'00000000).
+Adding SRST signal on $flatten\kernel_sram.$procdff$407 ($dff) from module conv2d_accel (D = $flatten\kernel_sram.$memrd$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:31$164_DATA, Q = \kernel_sram.rd_data [23:16], rval = 8'00000000).
+Adding SRST signal on $flatten\kernel_sram.$procdff$407 ($dff) from module conv2d_accel (D = $flatten\kernel_sram.$memrd$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:30$160_DATA, Q = \kernel_sram.rd_data [15:8], rval = 8'00000000).
+Adding SRST signal on $flatten\input_sram.$procdff$403 ($dff) from module conv2d_accel (D = $flatten\input_sram.$memrd$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:29$183_DATA, Q = \input_sram.rd_data [7:0], rval = 8'00000000).
+Adding SRST signal on $flatten\input_sram.$procdff$403 ($dff) from module conv2d_accel (D = $flatten\input_sram.$memrd$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:31$191_DATA, Q = \input_sram.rd_data [23:16], rval = 8'00000000).
+Adding SRST signal on $flatten\input_sram.$procdff$403 ($dff) from module conv2d_accel (D = $flatten\input_sram.$memrd$\mem$/openlane/designs/CNN_acc/src/simple_sram.v:30$187_DATA, Q = \input_sram.rd_data [15:8], rval = 8'00000000).
+Adding EN signal on $flatten\engine.$procdff$389 ($adff) from module conv2d_accel (D = $flatten\engine.$0\acc[31:0], Q = \engine.acc).
+Adding EN signal on $flatten\engine.$procdff$388 ($adff) from module conv2d_accel (D = $flatten\engine.$0\ki[1:0], Q = \engine.ki).
+Adding EN signal on $flatten\engine.$procdff$387 ($adff) from module conv2d_accel (D = $flatten\engine.$0\out_col[3:0], Q = \engine.out_col).
+Adding EN signal on $flatten\engine.$procdff$386 ($adff) from module conv2d_accel (D = $flatten\engine.$0\out_row[3:0], Q = \engine.out_row).
+Adding EN signal on $flatten\engine.$procdff$385 ($adff) from module conv2d_accel (D = $flatten\engine.$0\done[0:0], Q = \engine.done).
+Adding EN signal on $flatten\engine.$procdff$384 ($dff) from module conv2d_accel (D = \engine.acc [7:0], Q = \engine.output_wr_data).
+Adding EN signal on $flatten\engine.$procdff$381 ($dff) from module conv2d_accel (D = $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:111$98_Y [7:0], Q = \engine.output_wr_addr).
+Adding EN signal on $flatten\engine.$procdff$377 ($adff) from module conv2d_accel (D = $flatten\engine.$0\kernel_rd_addr[3:0], Q = \engine.kernel_rd_addr).
+Adding EN signal on $flatten\engine.$procdff$376 ($adff) from module conv2d_accel (D = $flatten\engine.$0\input_rd_addr[7:0], Q = \engine.input_rd_addr).
+
+26.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \conv2d_accel..
+Removed 25 unused cells and 30 unused wires.
+<suppressed ~29 debug messages>
+
+26.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module conv2d_accel.
+<suppressed ~9 debug messages>
+
+26.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+26.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \conv2d_accel..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~28 debug messages>
+
+26.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \conv2d_accel.
+Performed a total of 0 changes.
+
+26.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\conv2d_accel'.
+<suppressed ~27 debug messages>
+Removed a total of 9 cells.
+
+26.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+26.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \conv2d_accel..
+Removed 0 unused cells and 9 unused wires.
+<suppressed ~1 debug messages>
+
+26.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module conv2d_accel.
+
+26.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+26.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \conv2d_accel..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~28 debug messages>
+
+26.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \conv2d_accel.
+Performed a total of 0 changes.
+
+26.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\conv2d_accel'.
+Removed a total of 0 cells.
+
+26.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+26.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \conv2d_accel..
+
+26.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module conv2d_accel.
+
+26.23. Finished OPT passes. (There is nothing left to do.)
+
+27. Executing WREDUCE pass (reducing word size of cells).
+Removed top 15 bits (of 16) from port B of cell conv2d_accel.$ge$/openlane/designs/CNN_acc/src/conv2d_accel.v:88$62 ($ge).
+Removed top 8 bits (of 16) from port B of cell conv2d_accel.$le$/openlane/designs/CNN_acc/src/conv2d_accel.v:88$63 ($le).
+Removed top 7 bits (of 16) from port B of cell conv2d_accel.$ge$/openlane/designs/CNN_acc/src/conv2d_accel.v:90$65 ($ge).
+Removed top 7 bits (of 16) from port B of cell conv2d_accel.$le$/openlane/designs/CNN_acc/src/conv2d_accel.v:90$66 ($le).
+Removed top 3 bits (of 16) from port B of cell conv2d_accel.$eq$/openlane/designs/CNN_acc/src/conv2d_accel.v:92$68 ($eq).
+Removed top 7 bits (of 8) from port B of cell conv2d_accel.$eq$/openlane/designs/CNN_acc/src/conv2d_accel.v:92$69 ($eq).
+Removed top 31 bits (of 32) from port B of cell conv2d_accel.$add$/openlane/designs/CNN_acc/src/conv2d_accel.v:108$72 ($add).
+Removed top 3 bits (of 16) from port B of cell conv2d_accel.$eq$/openlane/designs/CNN_acc/src/conv2d_accel.v:125$74 ($eq).
+Removed top 3 bits (of 16) from port B of cell conv2d_accel.$eq$/openlane/designs/CNN_acc/src/conv2d_accel.v:127$75 ($eq).
+Removed top 2 bits (of 16) from port B of cell conv2d_accel.$ge$/openlane/designs/CNN_acc/src/conv2d_accel.v:129$76 ($ge).
+Removed top 2 bits (of 16) from port B of cell conv2d_accel.$le$/openlane/designs/CNN_acc/src/conv2d_accel.v:129$77 ($le).
+Removed top 1 bits (of 2) from port B of cell conv2d_accel.$auto$opt_dff.cc:195:make_patterns_logic$485 ($ne).
+Removed top 23 bits (of 32) from port B of cell conv2d_accel.$flatten\input_sram.$lt$/openlane/designs/CNN_acc/src/simple_sram.v:29$182 ($lt).
+Removed top 24 bits (of 32) from mux cell conv2d_accel.$flatten\input_sram.$ternary$/openlane/designs/CNN_acc/src/simple_sram.v:20$174 ($mux).
+Removed top 23 bits (of 32) from port B of cell conv2d_accel.$flatten\input_sram.$lt$/openlane/designs/CNN_acc/src/simple_sram.v:20$172 ($lt).
+Removed top 30 bits (of 32) from port B of cell conv2d_accel.$flatten\input_sram.$add$/openlane/designs/CNN_acc/src/simple_sram.v:20$171 ($add).
+Removed top 23 bits (of 32) from port Y of cell conv2d_accel.$flatten\input_sram.$add$/openlane/designs/CNN_acc/src/simple_sram.v:20$171 ($add).
+Removed top 24 bits (of 32) from mux cell conv2d_accel.$flatten\input_sram.$ternary$/openlane/designs/CNN_acc/src/simple_sram.v:19$170 ($mux).
+Removed top 23 bits (of 32) from port B of cell conv2d_accel.$flatten\input_sram.$lt$/openlane/designs/CNN_acc/src/simple_sram.v:19$168 ($lt).
+Removed top 31 bits (of 32) from port B of cell conv2d_accel.$flatten\input_sram.$add$/openlane/designs/CNN_acc/src/simple_sram.v:19$167 ($add).
+Removed top 23 bits (of 32) from port Y of cell conv2d_accel.$flatten\input_sram.$add$/openlane/designs/CNN_acc/src/simple_sram.v:19$167 ($add).
+Removed top 28 bits (of 32) from port B of cell conv2d_accel.$flatten\kernel_sram.$lt$/openlane/designs/CNN_acc/src/simple_sram.v:29$155 ($lt).
+Removed top 28 bits (of 32) from mux cell conv2d_accel.$flatten\kernel_sram.$ternary$/openlane/designs/CNN_acc/src/simple_sram.v:20$147 ($mux).
+Removed top 28 bits (of 32) from port B of cell conv2d_accel.$flatten\kernel_sram.$lt$/openlane/designs/CNN_acc/src/simple_sram.v:20$145 ($lt).
+Removed top 30 bits (of 32) from port B of cell conv2d_accel.$flatten\kernel_sram.$add$/openlane/designs/CNN_acc/src/simple_sram.v:20$144 ($add).
+Removed top 27 bits (of 32) from port Y of cell conv2d_accel.$flatten\kernel_sram.$add$/openlane/designs/CNN_acc/src/simple_sram.v:20$144 ($add).
+Removed top 28 bits (of 32) from mux cell conv2d_accel.$flatten\kernel_sram.$ternary$/openlane/designs/CNN_acc/src/simple_sram.v:19$143 ($mux).
+Removed top 28 bits (of 32) from port B of cell conv2d_accel.$flatten\kernel_sram.$lt$/openlane/designs/CNN_acc/src/simple_sram.v:19$141 ($lt).
+Removed top 31 bits (of 32) from port B of cell conv2d_accel.$flatten\kernel_sram.$add$/openlane/designs/CNN_acc/src/simple_sram.v:19$140 ($add).
+Removed top 27 bits (of 32) from port Y of cell conv2d_accel.$flatten\kernel_sram.$add$/openlane/designs/CNN_acc/src/simple_sram.v:19$140 ($add).
+Removed top 24 bits (of 32) from port B of cell conv2d_accel.$flatten\output_sram.$lt$/openlane/designs/CNN_acc/src/simple_sram.v:29$128 ($lt).
+Removed top 24 bits (of 32) from port A of cell conv2d_accel.$flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:128$107 ($add).
+Removed top 24 bits (of 32) from port Y of cell conv2d_accel.$flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:128$107 ($add).
+Removed top 24 bits (of 32) from port B of cell conv2d_accel.$flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:128$107 ($add).
+Removed top 31 bits (of 32) from port B of cell conv2d_accel.$flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:126$104 ($add).
+Removed top 27 bits (of 32) from port Y of cell conv2d_accel.$flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:126$104 ($add).
+Removed top 31 bits (of 32) from port B of cell conv2d_accel.$flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:120$101 ($add).
+Removed top 28 bits (of 32) from port Y of cell conv2d_accel.$flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:120$101 ($add).
+Removed top 24 bits (of 32) from port Y of cell conv2d_accel.$flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:111$98 ($add).
+Removed top 24 bits (of 32) from port A of cell conv2d_accel.$flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:111$98 ($add).
+Removed top 28 bits (of 31) from port B of cell conv2d_accel.$flatten\engine.$mul$/openlane/designs/CNN_acc/src/conv_engine.v:111$97 ($mul).
+Removed top 24 bits (of 31) from port Y of cell conv2d_accel.$flatten\engine.$mul$/openlane/designs/CNN_acc/src/conv_engine.v:111$97 ($mul).
+Removed top 30 bits (of 32) from port B of cell conv2d_accel.$flatten\engine.$mul$/openlane/designs/CNN_acc/src/conv_engine.v:105$96 ($mul).
+Removed top 28 bits (of 32) from port Y of cell conv2d_accel.$flatten\engine.$mul$/openlane/designs/CNN_acc/src/conv_engine.v:105$96 ($mul).
+Removed top 24 bits (of 32) from port Y of cell conv2d_accel.$flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:104$94 ($add).
+Removed top 24 bits (of 32) from port A of cell conv2d_accel.$flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:104$94 ($add).
+Removed top 31 bits (of 32) from port B of cell conv2d_accel.$flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:104$92 ($add).
+Removed top 28 bits (of 32) from port Y of cell conv2d_accel.$flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:104$92 ($add).
+Removed top 28 bits (of 32) from port A of cell conv2d_accel.$flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:104$92 ($add).
+Removed top 28 bits (of 32) from port Y of cell conv2d_accel.$flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:104$91 ($add).
+Removed top 31 bits (of 32) from port B of cell conv2d_accel.$flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:102$90 ($add).
+Removed top 29 bits (of 32) from port Y of cell conv2d_accel.$flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:102$90 ($add).
+Removed top 15 bits (of 32) from port Y of cell conv2d_accel.$flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:50$79 ($add).
+Removed top 23 bits (of 32) from port A of cell conv2d_accel.$flatten\input_sram.$lt$/openlane/designs/CNN_acc/src/simple_sram.v:20$172 ($lt).
+Removed top 23 bits (of 32) from port A of cell conv2d_accel.$flatten\input_sram.$lt$/openlane/designs/CNN_acc/src/simple_sram.v:19$168 ($lt).
+Removed top 27 bits (of 32) from port A of cell conv2d_accel.$flatten\kernel_sram.$lt$/openlane/designs/CNN_acc/src/simple_sram.v:20$145 ($lt).
+Removed top 27 bits (of 32) from port A of cell conv2d_accel.$flatten\kernel_sram.$lt$/openlane/designs/CNN_acc/src/simple_sram.v:19$141 ($lt).
+Removed top 29 bits (of 32) from wire conv2d_accel.$flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:102$90_Y.
+Removed top 28 bits (of 32) from wire conv2d_accel.$flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:104$91_Y.
+Removed top 28 bits (of 32) from wire conv2d_accel.$flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:104$94_Y.
+Removed top 24 bits (of 32) from wire conv2d_accel.$flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:111$98_Y.
+Removed top 28 bits (of 32) from wire conv2d_accel.$flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:126$104_Y.
+Removed top 24 bits (of 32) from wire conv2d_accel.$flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:128$107_Y.
+Removed top 28 bits (of 32) from wire conv2d_accel.$flatten\engine.$mul$/openlane/designs/CNN_acc/src/conv_engine.v:105$96_Y.
+Removed top 24 bits (of 32) from wire conv2d_accel.$flatten\engine.$mul$/openlane/designs/CNN_acc/src/conv_engine.v:111$97_Y.
+Removed top 3 bits (of 4) from wire conv2d_accel.$flatten\engine.$procmux$230_Y.
+Removed top 23 bits (of 32) from wire conv2d_accel.$flatten\input_sram.$add$/openlane/designs/CNN_acc/src/simple_sram.v:19$167_Y.
+Removed top 23 bits (of 32) from wire conv2d_accel.$flatten\input_sram.$add$/openlane/designs/CNN_acc/src/simple_sram.v:20$171_Y.
+Removed top 27 bits (of 32) from wire conv2d_accel.$flatten\kernel_sram.$add$/openlane/designs/CNN_acc/src/simple_sram.v:19$140_Y.
+Removed top 27 bits (of 32) from wire conv2d_accel.$flatten\kernel_sram.$add$/openlane/designs/CNN_acc/src/simple_sram.v:20$144_Y.
+Removed top 16 bits (of 24) from wire conv2d_accel.output_sram_rd_data.
+
+28. Executing PEEPOPT pass (run peephole optimizers).
+
+29. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \conv2d_accel..
+Removed 0 unused cells and 18 unused wires.
+<suppressed ~1 debug messages>
+
+30. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module conv2d_accel:
+  creating $macc model for $add$/openlane/designs/CNN_acc/src/conv2d_accel.v:108$72 ($add).
+  creating $macc model for $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:102$90 ($add).
+  creating $macc model for $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:104$91 ($add).
+  creating $macc model for $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:104$92 ($add).
+  creating $macc model for $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:104$94 ($add).
+  creating $macc model for $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:111$98 ($add).
+  creating $macc model for $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:120$101 ($add).
+  creating $macc model for $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:126$104 ($add).
+  creating $macc model for $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:128$107 ($add).
+  creating $macc model for $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:50$79 ($add).
+  creating $macc model for $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:50$80 ($add).
+  creating $macc model for $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:96$88 ($add).
+  creating $macc model for $flatten\engine.$mul$/openlane/designs/CNN_acc/src/conv_engine.v:105$96 ($mul).
+  creating $macc model for $flatten\engine.$mul$/openlane/designs/CNN_acc/src/conv_engine.v:111$97 ($mul).
+  creating $macc model for $flatten\engine.$mul$/openlane/designs/CNN_acc/src/conv_engine.v:46$109 ($mul).
+  creating $macc model for $flatten\engine.$mul$/openlane/designs/CNN_acc/src/conv_engine.v:46$110 ($mul).
+  creating $macc model for $flatten\engine.$mul$/openlane/designs/CNN_acc/src/conv_engine.v:46$111 ($mul).
+  creating $macc model for $flatten\input_sram.$add$/openlane/designs/CNN_acc/src/simple_sram.v:19$167 ($add).
+  creating $macc model for $flatten\input_sram.$add$/openlane/designs/CNN_acc/src/simple_sram.v:20$171 ($add).
+  creating $macc model for $flatten\kernel_sram.$add$/openlane/designs/CNN_acc/src/simple_sram.v:19$140 ($add).
+  creating $macc model for $flatten\kernel_sram.$add$/openlane/designs/CNN_acc/src/simple_sram.v:20$144 ($add).
+  merging $macc model for $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:50$80 into $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:96$88.
+  merging $macc model for $flatten\engine.$mul$/openlane/designs/CNN_acc/src/conv_engine.v:46$111 into $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:96$88.
+  merging $macc model for $flatten\engine.$mul$/openlane/designs/CNN_acc/src/conv_engine.v:46$109 into $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:50$79.
+  merging $macc model for $flatten\engine.$mul$/openlane/designs/CNN_acc/src/conv_engine.v:46$110 into $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:50$79.
+  merging $macc model for $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:104$91 into $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:104$92.
+  creating $alu model for $macc $flatten\kernel_sram.$add$/openlane/designs/CNN_acc/src/simple_sram.v:19$140.
+  creating $alu model for $macc $flatten\input_sram.$add$/openlane/designs/CNN_acc/src/simple_sram.v:20$171.
+  creating $alu model for $macc $flatten\input_sram.$add$/openlane/designs/CNN_acc/src/simple_sram.v:19$167.
+  creating $alu model for $macc $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:128$107.
+  creating $alu model for $macc $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:126$104.
+  creating $alu model for $macc $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:120$101.
+  creating $alu model for $macc $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:111$98.
+  creating $alu model for $macc $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:104$94.
+  creating $alu model for $macc $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:104$92.
+  creating $alu model for $macc $flatten\kernel_sram.$add$/openlane/designs/CNN_acc/src/simple_sram.v:20$144.
+  creating $alu model for $macc $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:102$90.
+  creating $alu model for $macc $add$/openlane/designs/CNN_acc/src/conv2d_accel.v:108$72.
+  creating $macc cell for $flatten\engine.$mul$/openlane/designs/CNN_acc/src/conv_engine.v:105$96: $auto$alumacc.cc:365:replace_macc$537
+  creating $macc cell for $flatten\engine.$mul$/openlane/designs/CNN_acc/src/conv_engine.v:111$97: $auto$alumacc.cc:365:replace_macc$538
+  creating $macc cell for $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:50$79: $auto$alumacc.cc:365:replace_macc$539
+  creating $macc cell for $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:96$88: $auto$alumacc.cc:365:replace_macc$540
+  creating $alu model for $flatten\input_sram.$lt$/openlane/designs/CNN_acc/src/simple_sram.v:19$168 ($lt): new $alu
+  creating $alu model for $flatten\input_sram.$lt$/openlane/designs/CNN_acc/src/simple_sram.v:20$172 ($lt): new $alu
+  creating $alu model for $flatten\input_sram.$lt$/openlane/designs/CNN_acc/src/simple_sram.v:29$182 ($lt): new $alu
+  creating $alu model for $flatten\kernel_sram.$lt$/openlane/designs/CNN_acc/src/simple_sram.v:19$141 ($lt): new $alu
+  creating $alu model for $flatten\kernel_sram.$lt$/openlane/designs/CNN_acc/src/simple_sram.v:20$145 ($lt): new $alu
+  creating $alu model for $flatten\kernel_sram.$lt$/openlane/designs/CNN_acc/src/simple_sram.v:29$155 ($lt): new $alu
+  creating $alu model for $flatten\output_sram.$lt$/openlane/designs/CNN_acc/src/simple_sram.v:29$128 ($lt): new $alu
+  creating $alu model for $ge$/openlane/designs/CNN_acc/src/conv2d_accel.v:129$76 ($ge): new $alu
+  creating $alu model for $ge$/openlane/designs/CNN_acc/src/conv2d_accel.v:88$62 ($ge): new $alu
+  creating $alu model for $ge$/openlane/designs/CNN_acc/src/conv2d_accel.v:90$65 ($ge): new $alu
+  creating $alu model for $le$/openlane/designs/CNN_acc/src/conv2d_accel.v:129$77 ($le): new $alu
+  creating $alu model for $le$/openlane/designs/CNN_acc/src/conv2d_accel.v:88$63 ($le): new $alu
+  creating $alu model for $le$/openlane/designs/CNN_acc/src/conv2d_accel.v:90$66 ($le): new $alu
+  creating $alu cell for $le$/openlane/designs/CNN_acc/src/conv2d_accel.v:90$66: $auto$alumacc.cc:485:replace_alu$554
+  creating $alu cell for $le$/openlane/designs/CNN_acc/src/conv2d_accel.v:88$63: $auto$alumacc.cc:485:replace_alu$567
+  creating $alu cell for $le$/openlane/designs/CNN_acc/src/conv2d_accel.v:129$77: $auto$alumacc.cc:485:replace_alu$580
+  creating $alu cell for $ge$/openlane/designs/CNN_acc/src/conv2d_accel.v:90$65: $auto$alumacc.cc:485:replace_alu$593
+  creating $alu cell for $ge$/openlane/designs/CNN_acc/src/conv2d_accel.v:88$62: $auto$alumacc.cc:485:replace_alu$602
+  creating $alu cell for $ge$/openlane/designs/CNN_acc/src/conv2d_accel.v:129$76: $auto$alumacc.cc:485:replace_alu$611
+  creating $alu cell for $flatten\output_sram.$lt$/openlane/designs/CNN_acc/src/simple_sram.v:29$128: $auto$alumacc.cc:485:replace_alu$620
+  creating $alu cell for $flatten\kernel_sram.$lt$/openlane/designs/CNN_acc/src/simple_sram.v:29$155: $auto$alumacc.cc:485:replace_alu$625
+  creating $alu cell for $flatten\kernel_sram.$lt$/openlane/designs/CNN_acc/src/simple_sram.v:20$145: $auto$alumacc.cc:485:replace_alu$630
+  creating $alu cell for $flatten\kernel_sram.$lt$/openlane/designs/CNN_acc/src/simple_sram.v:19$141: $auto$alumacc.cc:485:replace_alu$641
+  creating $alu cell for $flatten\input_sram.$lt$/openlane/designs/CNN_acc/src/simple_sram.v:29$182: $auto$alumacc.cc:485:replace_alu$652
+  creating $alu cell for $flatten\input_sram.$lt$/openlane/designs/CNN_acc/src/simple_sram.v:20$172: $auto$alumacc.cc:485:replace_alu$657
+  creating $alu cell for $flatten\input_sram.$lt$/openlane/designs/CNN_acc/src/simple_sram.v:19$168: $auto$alumacc.cc:485:replace_alu$662
+  creating $alu cell for $add$/openlane/designs/CNN_acc/src/conv2d_accel.v:108$72: $auto$alumacc.cc:485:replace_alu$667
+  creating $alu cell for $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:102$90: $auto$alumacc.cc:485:replace_alu$670
+  creating $alu cell for $flatten\kernel_sram.$add$/openlane/designs/CNN_acc/src/simple_sram.v:20$144: $auto$alumacc.cc:485:replace_alu$673
+  creating $alu cell for $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:104$92: $auto$alumacc.cc:485:replace_alu$676
+  creating $alu cell for $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:104$94: $auto$alumacc.cc:485:replace_alu$679
+  creating $alu cell for $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:111$98: $auto$alumacc.cc:485:replace_alu$682
+  creating $alu cell for $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:120$101: $auto$alumacc.cc:485:replace_alu$685
+  creating $alu cell for $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:126$104: $auto$alumacc.cc:485:replace_alu$688
+  creating $alu cell for $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:128$107: $auto$alumacc.cc:485:replace_alu$691
+  creating $alu cell for $flatten\input_sram.$add$/openlane/designs/CNN_acc/src/simple_sram.v:19$167: $auto$alumacc.cc:485:replace_alu$694
+  creating $alu cell for $flatten\input_sram.$add$/openlane/designs/CNN_acc/src/simple_sram.v:20$171: $auto$alumacc.cc:485:replace_alu$697
+  creating $alu cell for $flatten\kernel_sram.$add$/openlane/designs/CNN_acc/src/simple_sram.v:19$140: $auto$alumacc.cc:485:replace_alu$700
+  created 25 $alu and 4 $macc cells.
+
+31. Executing SHARE pass (SAT-based resource sharing).
+Found 3 cells in module conv2d_accel that may be considered for resource sharing.
+  Analyzing resource sharing options for $flatten\engine.$mul$/openlane/designs/CNN_acc/src/conv_engine.v:46$111 ($mul):
+    Found cell that is never activated: $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:50$80
+    Found cell that is never activated: $flatten\engine.$mul$/openlane/designs/CNN_acc/src/conv_engine.v:46$111
+    Cell is never active. Sharing is pointless, we simply remove it.
+  Analyzing resource sharing options for $flatten\engine.$mul$/openlane/designs/CNN_acc/src/conv_engine.v:46$110 ($mul):
+    Found cell that is never activated: $flatten\engine.$mul$/openlane/designs/CNN_acc/src/conv_engine.v:46$110
+    Cell is never active. Sharing is pointless, we simply remove it.
+  Analyzing resource sharing options for $flatten\engine.$mul$/openlane/designs/CNN_acc/src/conv_engine.v:46$109 ($mul):
+    Found cell that is never activated: $flatten\engine.$mul$/openlane/designs/CNN_acc/src/conv_engine.v:46$109
+    Cell is never active. Sharing is pointless, we simply remove it.
+Removing 4 cells in module conv2d_accel:
+  Removing cell $flatten\engine.$mul$/openlane/designs/CNN_acc/src/conv_engine.v:46$109 ($mul).
+  Removing cell $flatten\engine.$mul$/openlane/designs/CNN_acc/src/conv_engine.v:46$110 ($mul).
+  Removing cell $flatten\engine.$mul$/openlane/designs/CNN_acc/src/conv_engine.v:46$111 ($mul).
+  Removing cell $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:50$80 ($add).
+
+32. Executing OPT pass (performing simple optimizations).
+
+32.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module conv2d_accel.
+<suppressed ~11 debug messages>
+
+32.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\conv2d_accel'.
+Removed a total of 0 cells.
+
+32.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \conv2d_accel..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~28 debug messages>
+
+32.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \conv2d_accel.
+Performed a total of 0 changes.
+
+32.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\conv2d_accel'.
+Removed a total of 0 cells.
+
+32.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+32.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \conv2d_accel..
+Removed 8 unused cells and 21 unused wires.
+<suppressed ~9 debug messages>
+
+32.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module conv2d_accel.
+
+32.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+32.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \conv2d_accel..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~28 debug messages>
+
+32.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \conv2d_accel.
+Performed a total of 0 changes.
+
+32.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\conv2d_accel'.
+Removed a total of 0 cells.
+
+32.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+32.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \conv2d_accel..
+
+32.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module conv2d_accel.
+
+32.16. Finished OPT passes. (There is nothing left to do.)
+
+33. Executing MEMORY pass.
+
+33.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+33.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+33.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+  Analyzing conv2d_accel.input_sram.mem write port 0.
+  Analyzing conv2d_accel.kernel_sram.mem write port 0.
+  Analyzing conv2d_accel.output_sram.mem write port 0.
+
+33.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+33.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+Checking read port `\input_sram.mem'[0] in module `\conv2d_accel': merging output FF to cell.
+    Write port 0: non-transparent.
+Checking read port `\input_sram.mem'[1] in module `\conv2d_accel': merging output FF to cell.
+    Write port 0: non-transparent.
+Checking read port `\input_sram.mem'[2] in module `\conv2d_accel': merging output FF to cell.
+    Write port 0: non-transparent.
+Checking read port `\kernel_sram.mem'[0] in module `\conv2d_accel': merging output FF to cell.
+    Write port 0: non-transparent.
+Checking read port `\kernel_sram.mem'[1] in module `\conv2d_accel': merging output FF to cell.
+    Write port 0: non-transparent.
+Checking read port `\kernel_sram.mem'[2] in module `\conv2d_accel': merging output FF to cell.
+    Write port 0: non-transparent.
+Checking read port `\output_sram.mem'[0] in module `\conv2d_accel': merging output FF to cell.
+    Write port 0: non-transparent.
+
+33.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \conv2d_accel..
+Removed 7 unused cells and 63 unused wires.
+<suppressed ~8 debug messages>
+
+33.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+Consolidating read ports of memory conv2d_accel.input_sram.mem by address:
+Consolidating read ports of memory conv2d_accel.kernel_sram.mem by address:
+
+33.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+33.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \conv2d_accel..
+
+33.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+34. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \conv2d_accel..
+
+35. Executing OPT pass (performing simple optimizations).
+
+35.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module conv2d_accel.
+<suppressed ~60 debug messages>
+
+35.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\conv2d_accel'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+35.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+35.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \conv2d_accel..
+Removed 43 unused cells and 74 unused wires.
+<suppressed ~45 debug messages>
+
+35.5. Finished fast OPT passes.
+
+36. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+Mapping memory \input_sram.mem in module \conv2d_accel:
+  created 256 $dff cells and 0 static cells of width 8.
+Extracted data FF from read port 0 of conv2d_accel.input_sram.mem: $\input_sram.mem$rdreg[0]
+Extracted data FF from read port 1 of conv2d_accel.input_sram.mem: $\input_sram.mem$rdreg[1]
+Extracted data FF from read port 2 of conv2d_accel.input_sram.mem: $\input_sram.mem$rdreg[2]
+  read interface: 3 $dff and 765 $mux cells.
+  write interface: 256 write mux blocks.
+Mapping memory \kernel_sram.mem in module \conv2d_accel:
+  created 9 $dff cells and 0 static cells of width 8.
+Extracted data FF from read port 0 of conv2d_accel.kernel_sram.mem: $\kernel_sram.mem$rdreg[0]
+Extracted data FF from read port 1 of conv2d_accel.kernel_sram.mem: $\kernel_sram.mem$rdreg[1]
+Extracted data FF from read port 2 of conv2d_accel.kernel_sram.mem: $\kernel_sram.mem$rdreg[2]
+  read interface: 3 $dff and 45 $mux cells.
+  write interface: 9 write mux blocks.
+Mapping memory \output_sram.mem in module \conv2d_accel:
+  created 196 $dff cells and 0 static cells of width 8.
+Extracted data FF from read port 0 of conv2d_accel.output_sram.mem: $\output_sram.mem$rdreg[0]
+  read interface: 1 $dff and 255 $mux cells.
+  write interface: 196 write mux blocks.
+
+37. Executing OPT pass (performing simple optimizations).
+
+37.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module conv2d_accel.
+<suppressed ~191 debug messages>
+
+37.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\conv2d_accel'.
+Removed a total of 0 cells.
+
+37.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \conv2d_accel..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~482 debug messages>
+
+37.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \conv2d_accel.
+    New ctrl vector for $pmux cell $flatten\engine.$procmux$251: \engine.state [2]
+  Optimizing cells in module \conv2d_accel.
+Performed a total of 1 changes.
+
+37.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\conv2d_accel'.
+Removed a total of 0 cells.
+
+37.6. Executing OPT_SHARE pass.
+
+37.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+37.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \conv2d_accel..
+Removed 0 unused cells and 1617 unused wires.
+<suppressed ~1 debug messages>
+
+37.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module conv2d_accel.
+<suppressed ~13 debug messages>
+
+37.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+37.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \conv2d_accel..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~482 debug messages>
+
+37.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \conv2d_accel.
+Performed a total of 0 changes.
+
+37.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\conv2d_accel'.
+Removed a total of 0 cells.
+
+37.14. Executing OPT_SHARE pass.
+
+37.15. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $memory\output_sram.mem[9]$5532 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[9]).
+Adding EN signal on $memory\output_sram.mem[99]$5712 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[99]).
+Adding EN signal on $memory\output_sram.mem[98]$5710 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[98]).
+Adding EN signal on $memory\output_sram.mem[97]$5708 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[97]).
+Adding EN signal on $memory\output_sram.mem[96]$5706 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[96]).
+Adding EN signal on $memory\output_sram.mem[95]$5704 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[95]).
+Adding EN signal on $memory\output_sram.mem[94]$5702 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[94]).
+Adding EN signal on $memory\output_sram.mem[93]$5700 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[93]).
+Adding EN signal on $memory\output_sram.mem[92]$5698 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[92]).
+Adding EN signal on $memory\output_sram.mem[91]$5696 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[91]).
+Adding EN signal on $memory\output_sram.mem[90]$5694 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[90]).
+Adding EN signal on $memory\output_sram.mem[8]$5530 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[8]).
+Adding EN signal on $memory\output_sram.mem[89]$5692 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[89]).
+Adding EN signal on $memory\output_sram.mem[88]$5690 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[88]).
+Adding EN signal on $memory\output_sram.mem[87]$5688 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[87]).
+Adding EN signal on $memory\output_sram.mem[86]$5686 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[86]).
+Adding EN signal on $memory\output_sram.mem[85]$5684 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[85]).
+Adding EN signal on $memory\output_sram.mem[84]$5682 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[84]).
+Adding EN signal on $memory\output_sram.mem[83]$5680 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[83]).
+Adding EN signal on $memory\output_sram.mem[82]$5678 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[82]).
+Adding EN signal on $memory\output_sram.mem[81]$5676 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[81]).
+Adding EN signal on $memory\output_sram.mem[80]$5674 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[80]).
+Adding EN signal on $memory\output_sram.mem[7]$5528 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[7]).
+Adding EN signal on $memory\output_sram.mem[79]$5672 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[79]).
+Adding EN signal on $memory\output_sram.mem[78]$5670 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[78]).
+Adding EN signal on $memory\output_sram.mem[77]$5668 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[77]).
+Adding EN signal on $memory\output_sram.mem[76]$5666 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[76]).
+Adding EN signal on $memory\output_sram.mem[75]$5664 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[75]).
+Adding EN signal on $memory\output_sram.mem[74]$5662 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[74]).
+Adding EN signal on $memory\output_sram.mem[73]$5660 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[73]).
+Adding EN signal on $memory\output_sram.mem[72]$5658 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[72]).
+Adding EN signal on $memory\output_sram.mem[71]$5656 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[71]).
+Adding EN signal on $memory\output_sram.mem[70]$5654 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[70]).
+Adding EN signal on $memory\output_sram.mem[6]$5526 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[6]).
+Adding EN signal on $memory\output_sram.mem[69]$5652 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[69]).
+Adding EN signal on $memory\output_sram.mem[68]$5650 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[68]).
+Adding EN signal on $memory\output_sram.mem[67]$5648 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[67]).
+Adding EN signal on $memory\output_sram.mem[66]$5646 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[66]).
+Adding EN signal on $memory\output_sram.mem[65]$5644 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[65]).
+Adding EN signal on $memory\output_sram.mem[64]$5642 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[64]).
+Adding EN signal on $memory\output_sram.mem[63]$5640 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[63]).
+Adding EN signal on $memory\output_sram.mem[62]$5638 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[62]).
+Adding EN signal on $memory\output_sram.mem[61]$5636 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[61]).
+Adding EN signal on $memory\output_sram.mem[60]$5634 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[60]).
+Adding EN signal on $memory\output_sram.mem[5]$5524 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[5]).
+Adding EN signal on $memory\output_sram.mem[59]$5632 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[59]).
+Adding EN signal on $memory\output_sram.mem[58]$5630 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[58]).
+Adding EN signal on $memory\output_sram.mem[57]$5628 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[57]).
+Adding EN signal on $memory\output_sram.mem[56]$5626 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[56]).
+Adding EN signal on $memory\output_sram.mem[55]$5624 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[55]).
+Adding EN signal on $memory\output_sram.mem[54]$5622 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[54]).
+Adding EN signal on $memory\output_sram.mem[53]$5620 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[53]).
+Adding EN signal on $memory\output_sram.mem[52]$5618 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[52]).
+Adding EN signal on $memory\output_sram.mem[51]$5616 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[51]).
+Adding EN signal on $memory\output_sram.mem[50]$5614 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[50]).
+Adding EN signal on $memory\output_sram.mem[4]$5522 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[4]).
+Adding EN signal on $memory\output_sram.mem[49]$5612 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[49]).
+Adding EN signal on $memory\output_sram.mem[48]$5610 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[48]).
+Adding EN signal on $memory\output_sram.mem[47]$5608 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[47]).
+Adding EN signal on $memory\output_sram.mem[46]$5606 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[46]).
+Adding EN signal on $memory\output_sram.mem[45]$5604 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[45]).
+Adding EN signal on $memory\output_sram.mem[44]$5602 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[44]).
+Adding EN signal on $memory\output_sram.mem[43]$5600 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[43]).
+Adding EN signal on $memory\output_sram.mem[42]$5598 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[42]).
+Adding EN signal on $memory\output_sram.mem[41]$5596 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[41]).
+Adding EN signal on $memory\output_sram.mem[40]$5594 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[40]).
+Adding EN signal on $memory\output_sram.mem[3]$5520 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[3]).
+Adding EN signal on $memory\output_sram.mem[39]$5592 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[39]).
+Adding EN signal on $memory\output_sram.mem[38]$5590 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[38]).
+Adding EN signal on $memory\output_sram.mem[37]$5588 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[37]).
+Adding EN signal on $memory\output_sram.mem[36]$5586 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[36]).
+Adding EN signal on $memory\output_sram.mem[35]$5584 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[35]).
+Adding EN signal on $memory\output_sram.mem[34]$5582 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[34]).
+Adding EN signal on $memory\output_sram.mem[33]$5580 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[33]).
+Adding EN signal on $memory\output_sram.mem[32]$5578 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[32]).
+Adding EN signal on $memory\output_sram.mem[31]$5576 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[31]).
+Adding EN signal on $memory\output_sram.mem[30]$5574 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[30]).
+Adding EN signal on $memory\output_sram.mem[2]$5518 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[2]).
+Adding EN signal on $memory\output_sram.mem[29]$5572 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[29]).
+Adding EN signal on $memory\output_sram.mem[28]$5570 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[28]).
+Adding EN signal on $memory\output_sram.mem[27]$5568 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[27]).
+Adding EN signal on $memory\output_sram.mem[26]$5566 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[26]).
+Adding EN signal on $memory\output_sram.mem[25]$5564 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[25]).
+Adding EN signal on $memory\output_sram.mem[24]$5562 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[24]).
+Adding EN signal on $memory\output_sram.mem[23]$5560 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[23]).
+Adding EN signal on $memory\output_sram.mem[22]$5558 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[22]).
+Adding EN signal on $memory\output_sram.mem[21]$5556 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[21]).
+Adding EN signal on $memory\output_sram.mem[20]$5554 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[20]).
+Adding EN signal on $memory\output_sram.mem[1]$5516 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[1]).
+Adding EN signal on $memory\output_sram.mem[19]$5552 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[19]).
+Adding EN signal on $memory\output_sram.mem[195]$5904 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[195]).
+Adding EN signal on $memory\output_sram.mem[194]$5902 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[194]).
+Adding EN signal on $memory\output_sram.mem[193]$5900 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[193]).
+Adding EN signal on $memory\output_sram.mem[192]$5898 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[192]).
+Adding EN signal on $memory\output_sram.mem[191]$5896 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[191]).
+Adding EN signal on $memory\output_sram.mem[190]$5894 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[190]).
+Adding EN signal on $memory\output_sram.mem[18]$5550 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[18]).
+Adding EN signal on $memory\output_sram.mem[189]$5892 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[189]).
+Adding EN signal on $memory\output_sram.mem[188]$5890 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[188]).
+Adding EN signal on $memory\output_sram.mem[187]$5888 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[187]).
+Adding EN signal on $memory\output_sram.mem[186]$5886 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[186]).
+Adding EN signal on $memory\output_sram.mem[185]$5884 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[185]).
+Adding EN signal on $memory\output_sram.mem[184]$5882 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[184]).
+Adding EN signal on $memory\output_sram.mem[183]$5880 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[183]).
+Adding EN signal on $memory\output_sram.mem[182]$5878 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[182]).
+Adding EN signal on $memory\output_sram.mem[181]$5876 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[181]).
+Adding EN signal on $memory\output_sram.mem[180]$5874 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[180]).
+Adding EN signal on $memory\output_sram.mem[17]$5548 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[17]).
+Adding EN signal on $memory\output_sram.mem[179]$5872 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[179]).
+Adding EN signal on $memory\output_sram.mem[178]$5870 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[178]).
+Adding EN signal on $memory\output_sram.mem[177]$5868 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[177]).
+Adding EN signal on $memory\output_sram.mem[176]$5866 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[176]).
+Adding EN signal on $memory\output_sram.mem[175]$5864 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[175]).
+Adding EN signal on $memory\output_sram.mem[174]$5862 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[174]).
+Adding EN signal on $memory\output_sram.mem[173]$5860 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[173]).
+Adding EN signal on $memory\output_sram.mem[172]$5858 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[172]).
+Adding EN signal on $memory\output_sram.mem[171]$5856 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[171]).
+Adding EN signal on $memory\output_sram.mem[170]$5854 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[170]).
+Adding EN signal on $memory\output_sram.mem[16]$5546 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[16]).
+Adding EN signal on $memory\output_sram.mem[169]$5852 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[169]).
+Adding EN signal on $memory\output_sram.mem[168]$5850 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[168]).
+Adding EN signal on $memory\output_sram.mem[167]$5848 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[167]).
+Adding EN signal on $memory\output_sram.mem[166]$5846 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[166]).
+Adding EN signal on $memory\output_sram.mem[165]$5844 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[165]).
+Adding EN signal on $memory\output_sram.mem[164]$5842 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[164]).
+Adding EN signal on $memory\output_sram.mem[163]$5840 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[163]).
+Adding EN signal on $memory\output_sram.mem[162]$5838 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[162]).
+Adding EN signal on $memory\output_sram.mem[161]$5836 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[161]).
+Adding EN signal on $memory\output_sram.mem[160]$5834 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[160]).
+Adding EN signal on $memory\output_sram.mem[15]$5544 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[15]).
+Adding EN signal on $memory\output_sram.mem[159]$5832 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[159]).
+Adding EN signal on $memory\output_sram.mem[158]$5830 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[158]).
+Adding EN signal on $memory\output_sram.mem[157]$5828 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[157]).
+Adding EN signal on $memory\output_sram.mem[156]$5826 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[156]).
+Adding EN signal on $memory\output_sram.mem[155]$5824 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[155]).
+Adding EN signal on $memory\output_sram.mem[154]$5822 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[154]).
+Adding EN signal on $memory\output_sram.mem[153]$5820 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[153]).
+Adding EN signal on $memory\output_sram.mem[152]$5818 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[152]).
+Adding EN signal on $memory\output_sram.mem[151]$5816 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[151]).
+Adding EN signal on $memory\output_sram.mem[150]$5814 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[150]).
+Adding EN signal on $memory\output_sram.mem[14]$5542 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[14]).
+Adding EN signal on $memory\output_sram.mem[149]$5812 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[149]).
+Adding EN signal on $memory\output_sram.mem[148]$5810 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[148]).
+Adding EN signal on $memory\output_sram.mem[147]$5808 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[147]).
+Adding EN signal on $memory\output_sram.mem[146]$5806 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[146]).
+Adding EN signal on $memory\output_sram.mem[145]$5804 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[145]).
+Adding EN signal on $memory\output_sram.mem[144]$5802 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[144]).
+Adding EN signal on $memory\output_sram.mem[143]$5800 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[143]).
+Adding EN signal on $memory\output_sram.mem[142]$5798 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[142]).
+Adding EN signal on $memory\output_sram.mem[141]$5796 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[141]).
+Adding EN signal on $memory\output_sram.mem[140]$5794 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[140]).
+Adding EN signal on $memory\output_sram.mem[13]$5540 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[13]).
+Adding EN signal on $memory\output_sram.mem[139]$5792 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[139]).
+Adding EN signal on $memory\output_sram.mem[138]$5790 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[138]).
+Adding EN signal on $memory\output_sram.mem[137]$5788 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[137]).
+Adding EN signal on $memory\output_sram.mem[136]$5786 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[136]).
+Adding EN signal on $memory\output_sram.mem[135]$5784 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[135]).
+Adding EN signal on $memory\output_sram.mem[134]$5782 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[134]).
+Adding EN signal on $memory\output_sram.mem[133]$5780 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[133]).
+Adding EN signal on $memory\output_sram.mem[132]$5778 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[132]).
+Adding EN signal on $memory\output_sram.mem[131]$5776 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[131]).
+Adding EN signal on $memory\output_sram.mem[130]$5774 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[130]).
+Adding EN signal on $memory\output_sram.mem[12]$5538 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[12]).
+Adding EN signal on $memory\output_sram.mem[129]$5772 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[129]).
+Adding EN signal on $memory\output_sram.mem[128]$5770 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[128]).
+Adding EN signal on $memory\output_sram.mem[127]$5768 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[127]).
+Adding EN signal on $memory\output_sram.mem[126]$5766 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[126]).
+Adding EN signal on $memory\output_sram.mem[125]$5764 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[125]).
+Adding EN signal on $memory\output_sram.mem[124]$5762 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[124]).
+Adding EN signal on $memory\output_sram.mem[123]$5760 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[123]).
+Adding EN signal on $memory\output_sram.mem[122]$5758 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[122]).
+Adding EN signal on $memory\output_sram.mem[121]$5756 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[121]).
+Adding EN signal on $memory\output_sram.mem[120]$5754 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[120]).
+Adding EN signal on $memory\output_sram.mem[11]$5536 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[11]).
+Adding EN signal on $memory\output_sram.mem[119]$5752 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[119]).
+Adding EN signal on $memory\output_sram.mem[118]$5750 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[118]).
+Adding EN signal on $memory\output_sram.mem[117]$5748 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[117]).
+Adding EN signal on $memory\output_sram.mem[116]$5746 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[116]).
+Adding EN signal on $memory\output_sram.mem[115]$5744 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[115]).
+Adding EN signal on $memory\output_sram.mem[114]$5742 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[114]).
+Adding EN signal on $memory\output_sram.mem[113]$5740 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[113]).
+Adding EN signal on $memory\output_sram.mem[112]$5738 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[112]).
+Adding EN signal on $memory\output_sram.mem[111]$5736 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[111]).
+Adding EN signal on $memory\output_sram.mem[110]$5734 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[110]).
+Adding EN signal on $memory\output_sram.mem[10]$5534 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[10]).
+Adding EN signal on $memory\output_sram.mem[109]$5732 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[109]).
+Adding EN signal on $memory\output_sram.mem[108]$5730 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[108]).
+Adding EN signal on $memory\output_sram.mem[107]$5728 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[107]).
+Adding EN signal on $memory\output_sram.mem[106]$5726 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[106]).
+Adding EN signal on $memory\output_sram.mem[105]$5724 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[105]).
+Adding EN signal on $memory\output_sram.mem[104]$5722 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[104]).
+Adding EN signal on $memory\output_sram.mem[103]$5720 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[103]).
+Adding EN signal on $memory\output_sram.mem[102]$5718 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[102]).
+Adding EN signal on $memory\output_sram.mem[101]$5716 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[101]).
+Adding EN signal on $memory\output_sram.mem[100]$5714 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[100]).
+Adding EN signal on $memory\output_sram.mem[0]$5514 ($dff) from module conv2d_accel (D = \engine.output_wr_data, Q = \output_sram.mem[0]).
+Adding EN signal on $memory\kernel_sram.mem[8]$5341 ($dff) from module conv2d_accel (D = \wr_data, Q = \kernel_sram.mem[8]).
+Adding EN signal on $memory\kernel_sram.mem[7]$5339 ($dff) from module conv2d_accel (D = \wr_data, Q = \kernel_sram.mem[7]).
+Adding EN signal on $memory\kernel_sram.mem[6]$5337 ($dff) from module conv2d_accel (D = \wr_data, Q = \kernel_sram.mem[6]).
+Adding EN signal on $memory\kernel_sram.mem[5]$5335 ($dff) from module conv2d_accel (D = \wr_data, Q = \kernel_sram.mem[5]).
+Adding EN signal on $memory\kernel_sram.mem[4]$5333 ($dff) from module conv2d_accel (D = \wr_data, Q = \kernel_sram.mem[4]).
+Adding EN signal on $memory\kernel_sram.mem[3]$5331 ($dff) from module conv2d_accel (D = \wr_data, Q = \kernel_sram.mem[3]).
+Adding EN signal on $memory\kernel_sram.mem[2]$5329 ($dff) from module conv2d_accel (D = \wr_data, Q = \kernel_sram.mem[2]).
+Adding EN signal on $memory\kernel_sram.mem[1]$5327 ($dff) from module conv2d_accel (D = \wr_data, Q = \kernel_sram.mem[1]).
+Adding EN signal on $memory\kernel_sram.mem[0]$5325 ($dff) from module conv2d_accel (D = \wr_data, Q = \kernel_sram.mem[0]).
+Adding EN signal on $memory\input_sram.mem[9]$872 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[9]).
+Adding EN signal on $memory\input_sram.mem[99]$1052 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[99]).
+Adding EN signal on $memory\input_sram.mem[98]$1050 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[98]).
+Adding EN signal on $memory\input_sram.mem[97]$1048 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[97]).
+Adding EN signal on $memory\input_sram.mem[96]$1046 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[96]).
+Adding EN signal on $memory\input_sram.mem[95]$1044 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[95]).
+Adding EN signal on $memory\input_sram.mem[94]$1042 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[94]).
+Adding EN signal on $memory\input_sram.mem[93]$1040 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[93]).
+Adding EN signal on $memory\input_sram.mem[92]$1038 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[92]).
+Adding EN signal on $memory\input_sram.mem[91]$1036 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[91]).
+Adding EN signal on $memory\input_sram.mem[90]$1034 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[90]).
+Adding EN signal on $memory\input_sram.mem[8]$870 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[8]).
+Adding EN signal on $memory\input_sram.mem[89]$1032 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[89]).
+Adding EN signal on $memory\input_sram.mem[88]$1030 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[88]).
+Adding EN signal on $memory\input_sram.mem[87]$1028 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[87]).
+Adding EN signal on $memory\input_sram.mem[86]$1026 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[86]).
+Adding EN signal on $memory\input_sram.mem[85]$1024 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[85]).
+Adding EN signal on $memory\input_sram.mem[84]$1022 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[84]).
+Adding EN signal on $memory\input_sram.mem[83]$1020 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[83]).
+Adding EN signal on $memory\input_sram.mem[82]$1018 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[82]).
+Adding EN signal on $memory\input_sram.mem[81]$1016 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[81]).
+Adding EN signal on $memory\input_sram.mem[80]$1014 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[80]).
+Adding EN signal on $memory\input_sram.mem[7]$868 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[7]).
+Adding EN signal on $memory\input_sram.mem[79]$1012 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[79]).
+Adding EN signal on $memory\input_sram.mem[78]$1010 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[78]).
+Adding EN signal on $memory\input_sram.mem[77]$1008 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[77]).
+Adding EN signal on $memory\input_sram.mem[76]$1006 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[76]).
+Adding EN signal on $memory\input_sram.mem[75]$1004 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[75]).
+Adding EN signal on $memory\input_sram.mem[74]$1002 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[74]).
+Adding EN signal on $memory\input_sram.mem[73]$1000 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[73]).
+Adding EN signal on $memory\input_sram.mem[72]$998 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[72]).
+Adding EN signal on $memory\input_sram.mem[71]$996 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[71]).
+Adding EN signal on $memory\input_sram.mem[70]$994 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[70]).
+Adding EN signal on $memory\input_sram.mem[6]$866 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[6]).
+Adding EN signal on $memory\input_sram.mem[69]$992 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[69]).
+Adding EN signal on $memory\input_sram.mem[68]$990 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[68]).
+Adding EN signal on $memory\input_sram.mem[67]$988 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[67]).
+Adding EN signal on $memory\input_sram.mem[66]$986 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[66]).
+Adding EN signal on $memory\input_sram.mem[65]$984 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[65]).
+Adding EN signal on $memory\input_sram.mem[64]$982 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[64]).
+Adding EN signal on $memory\input_sram.mem[63]$980 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[63]).
+Adding EN signal on $memory\input_sram.mem[62]$978 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[62]).
+Adding EN signal on $memory\input_sram.mem[61]$976 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[61]).
+Adding EN signal on $memory\input_sram.mem[60]$974 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[60]).
+Adding EN signal on $memory\input_sram.mem[5]$864 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[5]).
+Adding EN signal on $memory\input_sram.mem[59]$972 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[59]).
+Adding EN signal on $memory\input_sram.mem[58]$970 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[58]).
+Adding EN signal on $memory\input_sram.mem[57]$968 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[57]).
+Adding EN signal on $memory\input_sram.mem[56]$966 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[56]).
+Adding EN signal on $memory\input_sram.mem[55]$964 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[55]).
+Adding EN signal on $memory\input_sram.mem[54]$962 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[54]).
+Adding EN signal on $memory\input_sram.mem[53]$960 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[53]).
+Adding EN signal on $memory\input_sram.mem[52]$958 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[52]).
+Adding EN signal on $memory\input_sram.mem[51]$956 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[51]).
+Adding EN signal on $memory\input_sram.mem[50]$954 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[50]).
+Adding EN signal on $memory\input_sram.mem[4]$862 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[4]).
+Adding EN signal on $memory\input_sram.mem[49]$952 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[49]).
+Adding EN signal on $memory\input_sram.mem[48]$950 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[48]).
+Adding EN signal on $memory\input_sram.mem[47]$948 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[47]).
+Adding EN signal on $memory\input_sram.mem[46]$946 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[46]).
+Adding EN signal on $memory\input_sram.mem[45]$944 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[45]).
+Adding EN signal on $memory\input_sram.mem[44]$942 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[44]).
+Adding EN signal on $memory\input_sram.mem[43]$940 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[43]).
+Adding EN signal on $memory\input_sram.mem[42]$938 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[42]).
+Adding EN signal on $memory\input_sram.mem[41]$936 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[41]).
+Adding EN signal on $memory\input_sram.mem[40]$934 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[40]).
+Adding EN signal on $memory\input_sram.mem[3]$860 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[3]).
+Adding EN signal on $memory\input_sram.mem[39]$932 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[39]).
+Adding EN signal on $memory\input_sram.mem[38]$930 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[38]).
+Adding EN signal on $memory\input_sram.mem[37]$928 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[37]).
+Adding EN signal on $memory\input_sram.mem[36]$926 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[36]).
+Adding EN signal on $memory\input_sram.mem[35]$924 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[35]).
+Adding EN signal on $memory\input_sram.mem[34]$922 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[34]).
+Adding EN signal on $memory\input_sram.mem[33]$920 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[33]).
+Adding EN signal on $memory\input_sram.mem[32]$918 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[32]).
+Adding EN signal on $memory\input_sram.mem[31]$916 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[31]).
+Adding EN signal on $memory\input_sram.mem[30]$914 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[30]).
+Adding EN signal on $memory\input_sram.mem[2]$858 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[2]).
+Adding EN signal on $memory\input_sram.mem[29]$912 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[29]).
+Adding EN signal on $memory\input_sram.mem[28]$910 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[28]).
+Adding EN signal on $memory\input_sram.mem[27]$908 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[27]).
+Adding EN signal on $memory\input_sram.mem[26]$906 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[26]).
+Adding EN signal on $memory\input_sram.mem[25]$904 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[25]).
+Adding EN signal on $memory\input_sram.mem[255]$1364 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[255]).
+Adding EN signal on $memory\input_sram.mem[254]$1362 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[254]).
+Adding EN signal on $memory\input_sram.mem[253]$1360 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[253]).
+Adding EN signal on $memory\input_sram.mem[252]$1358 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[252]).
+Adding EN signal on $memory\input_sram.mem[251]$1356 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[251]).
+Adding EN signal on $memory\input_sram.mem[250]$1354 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[250]).
+Adding EN signal on $memory\input_sram.mem[24]$902 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[24]).
+Adding EN signal on $memory\input_sram.mem[249]$1352 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[249]).
+Adding EN signal on $memory\input_sram.mem[248]$1350 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[248]).
+Adding EN signal on $memory\input_sram.mem[247]$1348 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[247]).
+Adding EN signal on $memory\input_sram.mem[246]$1346 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[246]).
+Adding EN signal on $memory\input_sram.mem[245]$1344 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[245]).
+Adding EN signal on $memory\input_sram.mem[244]$1342 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[244]).
+Adding EN signal on $memory\input_sram.mem[243]$1340 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[243]).
+Adding EN signal on $memory\input_sram.mem[242]$1338 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[242]).
+Adding EN signal on $memory\input_sram.mem[241]$1336 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[241]).
+Adding EN signal on $memory\input_sram.mem[240]$1334 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[240]).
+Adding EN signal on $memory\input_sram.mem[23]$900 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[23]).
+Adding EN signal on $memory\input_sram.mem[239]$1332 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[239]).
+Adding EN signal on $memory\input_sram.mem[238]$1330 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[238]).
+Adding EN signal on $memory\input_sram.mem[237]$1328 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[237]).
+Adding EN signal on $memory\input_sram.mem[236]$1326 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[236]).
+Adding EN signal on $memory\input_sram.mem[235]$1324 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[235]).
+Adding EN signal on $memory\input_sram.mem[234]$1322 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[234]).
+Adding EN signal on $memory\input_sram.mem[233]$1320 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[233]).
+Adding EN signal on $memory\input_sram.mem[232]$1318 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[232]).
+Adding EN signal on $memory\input_sram.mem[231]$1316 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[231]).
+Adding EN signal on $memory\input_sram.mem[230]$1314 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[230]).
+Adding EN signal on $memory\input_sram.mem[22]$898 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[22]).
+Adding EN signal on $memory\input_sram.mem[229]$1312 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[229]).
+Adding EN signal on $memory\input_sram.mem[228]$1310 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[228]).
+Adding EN signal on $memory\input_sram.mem[227]$1308 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[227]).
+Adding EN signal on $memory\input_sram.mem[226]$1306 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[226]).
+Adding EN signal on $memory\input_sram.mem[225]$1304 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[225]).
+Adding EN signal on $memory\input_sram.mem[224]$1302 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[224]).
+Adding EN signal on $memory\input_sram.mem[223]$1300 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[223]).
+Adding EN signal on $memory\input_sram.mem[222]$1298 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[222]).
+Adding EN signal on $memory\input_sram.mem[221]$1296 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[221]).
+Adding EN signal on $memory\input_sram.mem[220]$1294 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[220]).
+Adding EN signal on $memory\input_sram.mem[21]$896 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[21]).
+Adding EN signal on $memory\input_sram.mem[219]$1292 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[219]).
+Adding EN signal on $memory\input_sram.mem[218]$1290 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[218]).
+Adding EN signal on $memory\input_sram.mem[217]$1288 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[217]).
+Adding EN signal on $memory\input_sram.mem[216]$1286 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[216]).
+Adding EN signal on $memory\input_sram.mem[215]$1284 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[215]).
+Adding EN signal on $memory\input_sram.mem[214]$1282 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[214]).
+Adding EN signal on $memory\input_sram.mem[213]$1280 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[213]).
+Adding EN signal on $memory\input_sram.mem[212]$1278 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[212]).
+Adding EN signal on $memory\input_sram.mem[211]$1276 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[211]).
+Adding EN signal on $memory\input_sram.mem[210]$1274 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[210]).
+Adding EN signal on $memory\input_sram.mem[20]$894 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[20]).
+Adding EN signal on $memory\input_sram.mem[209]$1272 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[209]).
+Adding EN signal on $memory\input_sram.mem[208]$1270 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[208]).
+Adding EN signal on $memory\input_sram.mem[207]$1268 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[207]).
+Adding EN signal on $memory\input_sram.mem[206]$1266 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[206]).
+Adding EN signal on $memory\input_sram.mem[205]$1264 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[205]).
+Adding EN signal on $memory\input_sram.mem[204]$1262 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[204]).
+Adding EN signal on $memory\input_sram.mem[203]$1260 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[203]).
+Adding EN signal on $memory\input_sram.mem[202]$1258 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[202]).
+Adding EN signal on $memory\input_sram.mem[201]$1256 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[201]).
+Adding EN signal on $memory\input_sram.mem[200]$1254 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[200]).
+Adding EN signal on $memory\input_sram.mem[1]$856 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[1]).
+Adding EN signal on $memory\input_sram.mem[19]$892 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[19]).
+Adding EN signal on $memory\input_sram.mem[199]$1252 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[199]).
+Adding EN signal on $memory\input_sram.mem[198]$1250 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[198]).
+Adding EN signal on $memory\input_sram.mem[197]$1248 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[197]).
+Adding EN signal on $memory\input_sram.mem[196]$1246 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[196]).
+Adding EN signal on $memory\input_sram.mem[195]$1244 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[195]).
+Adding EN signal on $memory\input_sram.mem[194]$1242 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[194]).
+Adding EN signal on $memory\input_sram.mem[193]$1240 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[193]).
+Adding EN signal on $memory\input_sram.mem[192]$1238 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[192]).
+Adding EN signal on $memory\input_sram.mem[191]$1236 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[191]).
+Adding EN signal on $memory\input_sram.mem[190]$1234 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[190]).
+Adding EN signal on $memory\input_sram.mem[18]$890 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[18]).
+Adding EN signal on $memory\input_sram.mem[189]$1232 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[189]).
+Adding EN signal on $memory\input_sram.mem[188]$1230 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[188]).
+Adding EN signal on $memory\input_sram.mem[187]$1228 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[187]).
+Adding EN signal on $memory\input_sram.mem[186]$1226 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[186]).
+Adding EN signal on $memory\input_sram.mem[185]$1224 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[185]).
+Adding EN signal on $memory\input_sram.mem[184]$1222 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[184]).
+Adding EN signal on $memory\input_sram.mem[183]$1220 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[183]).
+Adding EN signal on $memory\input_sram.mem[182]$1218 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[182]).
+Adding EN signal on $memory\input_sram.mem[181]$1216 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[181]).
+Adding EN signal on $memory\input_sram.mem[180]$1214 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[180]).
+Adding EN signal on $memory\input_sram.mem[17]$888 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[17]).
+Adding EN signal on $memory\input_sram.mem[179]$1212 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[179]).
+Adding EN signal on $memory\input_sram.mem[178]$1210 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[178]).
+Adding EN signal on $memory\input_sram.mem[177]$1208 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[177]).
+Adding EN signal on $memory\input_sram.mem[176]$1206 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[176]).
+Adding EN signal on $memory\input_sram.mem[175]$1204 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[175]).
+Adding EN signal on $memory\input_sram.mem[174]$1202 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[174]).
+Adding EN signal on $memory\input_sram.mem[173]$1200 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[173]).
+Adding EN signal on $memory\input_sram.mem[172]$1198 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[172]).
+Adding EN signal on $memory\input_sram.mem[171]$1196 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[171]).
+Adding EN signal on $memory\input_sram.mem[170]$1194 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[170]).
+Adding EN signal on $memory\input_sram.mem[16]$886 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[16]).
+Adding EN signal on $memory\input_sram.mem[169]$1192 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[169]).
+Adding EN signal on $memory\input_sram.mem[168]$1190 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[168]).
+Adding EN signal on $memory\input_sram.mem[167]$1188 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[167]).
+Adding EN signal on $memory\input_sram.mem[166]$1186 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[166]).
+Adding EN signal on $memory\input_sram.mem[165]$1184 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[165]).
+Adding EN signal on $memory\input_sram.mem[164]$1182 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[164]).
+Adding EN signal on $memory\input_sram.mem[163]$1180 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[163]).
+Adding EN signal on $memory\input_sram.mem[162]$1178 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[162]).
+Adding EN signal on $memory\input_sram.mem[161]$1176 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[161]).
+Adding EN signal on $memory\input_sram.mem[160]$1174 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[160]).
+Adding EN signal on $memory\input_sram.mem[15]$884 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[15]).
+Adding EN signal on $memory\input_sram.mem[159]$1172 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[159]).
+Adding EN signal on $memory\input_sram.mem[158]$1170 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[158]).
+Adding EN signal on $memory\input_sram.mem[157]$1168 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[157]).
+Adding EN signal on $memory\input_sram.mem[156]$1166 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[156]).
+Adding EN signal on $memory\input_sram.mem[155]$1164 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[155]).
+Adding EN signal on $memory\input_sram.mem[154]$1162 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[154]).
+Adding EN signal on $memory\input_sram.mem[153]$1160 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[153]).
+Adding EN signal on $memory\input_sram.mem[152]$1158 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[152]).
+Adding EN signal on $memory\input_sram.mem[151]$1156 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[151]).
+Adding EN signal on $memory\input_sram.mem[150]$1154 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[150]).
+Adding EN signal on $memory\input_sram.mem[14]$882 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[14]).
+Adding EN signal on $memory\input_sram.mem[149]$1152 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[149]).
+Adding EN signal on $memory\input_sram.mem[148]$1150 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[148]).
+Adding EN signal on $memory\input_sram.mem[147]$1148 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[147]).
+Adding EN signal on $memory\input_sram.mem[146]$1146 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[146]).
+Adding EN signal on $memory\input_sram.mem[145]$1144 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[145]).
+Adding EN signal on $memory\input_sram.mem[144]$1142 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[144]).
+Adding EN signal on $memory\input_sram.mem[143]$1140 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[143]).
+Adding EN signal on $memory\input_sram.mem[142]$1138 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[142]).
+Adding EN signal on $memory\input_sram.mem[141]$1136 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[141]).
+Adding EN signal on $memory\input_sram.mem[140]$1134 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[140]).
+Adding EN signal on $memory\input_sram.mem[13]$880 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[13]).
+Adding EN signal on $memory\input_sram.mem[139]$1132 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[139]).
+Adding EN signal on $memory\input_sram.mem[138]$1130 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[138]).
+Adding EN signal on $memory\input_sram.mem[137]$1128 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[137]).
+Adding EN signal on $memory\input_sram.mem[136]$1126 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[136]).
+Adding EN signal on $memory\input_sram.mem[135]$1124 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[135]).
+Adding EN signal on $memory\input_sram.mem[134]$1122 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[134]).
+Adding EN signal on $memory\input_sram.mem[133]$1120 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[133]).
+Adding EN signal on $memory\input_sram.mem[132]$1118 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[132]).
+Adding EN signal on $memory\input_sram.mem[131]$1116 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[131]).
+Adding EN signal on $memory\input_sram.mem[130]$1114 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[130]).
+Adding EN signal on $memory\input_sram.mem[12]$878 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[12]).
+Adding EN signal on $memory\input_sram.mem[129]$1112 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[129]).
+Adding EN signal on $memory\input_sram.mem[128]$1110 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[128]).
+Adding EN signal on $memory\input_sram.mem[127]$1108 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[127]).
+Adding EN signal on $memory\input_sram.mem[126]$1106 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[126]).
+Adding EN signal on $memory\input_sram.mem[125]$1104 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[125]).
+Adding EN signal on $memory\input_sram.mem[124]$1102 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[124]).
+Adding EN signal on $memory\input_sram.mem[123]$1100 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[123]).
+Adding EN signal on $memory\input_sram.mem[122]$1098 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[122]).
+Adding EN signal on $memory\input_sram.mem[121]$1096 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[121]).
+Adding EN signal on $memory\input_sram.mem[120]$1094 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[120]).
+Adding EN signal on $memory\input_sram.mem[11]$876 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[11]).
+Adding EN signal on $memory\input_sram.mem[119]$1092 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[119]).
+Adding EN signal on $memory\input_sram.mem[118]$1090 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[118]).
+Adding EN signal on $memory\input_sram.mem[117]$1088 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[117]).
+Adding EN signal on $memory\input_sram.mem[116]$1086 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[116]).
+Adding EN signal on $memory\input_sram.mem[115]$1084 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[115]).
+Adding EN signal on $memory\input_sram.mem[114]$1082 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[114]).
+Adding EN signal on $memory\input_sram.mem[113]$1080 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[113]).
+Adding EN signal on $memory\input_sram.mem[112]$1078 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[112]).
+Adding EN signal on $memory\input_sram.mem[111]$1076 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[111]).
+Adding EN signal on $memory\input_sram.mem[110]$1074 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[110]).
+Adding EN signal on $memory\input_sram.mem[10]$874 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[10]).
+Adding EN signal on $memory\input_sram.mem[109]$1072 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[109]).
+Adding EN signal on $memory\input_sram.mem[108]$1070 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[108]).
+Adding EN signal on $memory\input_sram.mem[107]$1068 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[107]).
+Adding EN signal on $memory\input_sram.mem[106]$1066 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[106]).
+Adding EN signal on $memory\input_sram.mem[105]$1064 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[105]).
+Adding EN signal on $memory\input_sram.mem[104]$1062 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[104]).
+Adding EN signal on $memory\input_sram.mem[103]$1060 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[103]).
+Adding EN signal on $memory\input_sram.mem[102]$1058 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[102]).
+Adding EN signal on $memory\input_sram.mem[101]$1056 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[101]).
+Adding EN signal on $memory\input_sram.mem[100]$1054 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[100]).
+Adding EN signal on $memory\input_sram.mem[0]$854 ($dff) from module conv2d_accel (D = \wr_data, Q = \input_sram.mem[0]).
+
+37.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \conv2d_accel..
+Removed 461 unused cells and 474 unused wires.
+<suppressed ~462 debug messages>
+
+37.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module conv2d_accel.
+
+37.18. Rerunning OPT passes. (Maybe there is more to do..)
+
+37.19. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \conv2d_accel..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~21 debug messages>
+
+37.20. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \conv2d_accel.
+Performed a total of 0 changes.
+
+37.21. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\conv2d_accel'.
+Removed a total of 0 cells.
+
+37.22. Executing OPT_SHARE pass.
+
+37.23. Executing OPT_DFF pass (perform DFF optimizations).
+
+37.24. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \conv2d_accel..
+
+37.25. Executing OPT_EXPR pass (perform const folding).
+Optimizing module conv2d_accel.
+
+37.26. Finished OPT passes. (There is nothing left to do.)
+
+38. Executing TECHMAP pass (map to technology primitives).
+
+38.1. Executing Verilog-2005 frontend: /build/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/build/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+38.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $dffe.
+Using template $paramod$2ed8280b262e219c036a1de1b95189a8901efa7b\_90_alu for cells of type $alu.
+Using template $paramod$150d098cb9cca1819459bc5073194c8c53d2862d\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $logic_and.
+Using template $paramod$2af30114e9bd4ccb04dad757b3f0a8f6bf0615b0\_90_alu for cells of type $alu.
+Using template $paramod$fd7bfb1a4f3a7c2ac1a35670d0fa64ccc7b91841\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $eq.
+Using template $paramod$b3c20b05d9b1fc2c940ef2f6c917486aead042e8\_90_alu for cells of type $alu.
+Using template $paramod$00298f3f8094950cb9a5ff2fda48d0d8bde8806c\_90_alu for cells of type $alu.
+Using template $paramod$9dd2c168c92ea5e7211728a4dd85e9d07319b5c9\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $adff.
+Using extmapper simplemap for cells of type $adffe.
+Using extmapper simplemap for cells of type $ne.
+Using extmapper maccmap for cells of type $macc.
+  add $auto$wreduce.cc:455:run$523 [2:0] * 2'11 (3x2 bits, unsigned)
+Using extmapper simplemap for cells of type $reduce_or.
+Using template $paramod$0a77e3c00010cb33e399decd813a7380c6e25cba\_90_alu for cells of type $alu.
+Using template $paramod$fc972a7a46956c1788f3cb5257b53c8f1df2d0cc\_90_alu for cells of type $alu.
+Using template $paramod$a2af9b43308e3114c3b5dd3f4dc3329b2387395d\_90_alu for cells of type $alu.
+Using template $paramod$943564b9366bbc392bf4bbc801aa0a2d7742a4e0\_90_alu for cells of type $alu.
+Using template $paramod$6a42b6fefed750f8a1c58eab59479d960557103c\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $reduce_bool.
+Using extmapper simplemap for cells of type $reduce_and.
+Using template $paramod$bfceb922395790c0ce92e9f9b5b428d4fc72cc30\_90_alu for cells of type $alu.
+Using template $paramod$1a3a0c35c4a4896fbfd612699525c057298e72d2\_90_alu for cells of type $alu.
+Using template $paramod$f85408ed1aa3d09e465edae8a7bf590332ae9f7b\_90_alu for cells of type $alu.
+Using template $paramod$adbaf76fa5a3091a329503792521395f8ff4d1a4\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $or.
+Using template $paramod$740b056ede97228d3eae64ea2fdc81f0a33e0fe7\_90_alu for cells of type $alu.
+Using template $paramod$fc16b9f758000d363d24f130038bd99b46b4fa1b\_90_pmux for cells of type $pmux.
+Using template $paramod$32a7b7b86c07519b7537abc18e96f0331f97914d\_90_alu for cells of type $alu.
+  add \input_sram.rd_data [7:0] * \kernel_sram.rd_data [7:0] (8x8 bits, signed)
+  add \input_sram.rd_data [15:8] * \kernel_sram.rd_data [15:8] (8x8 bits, signed)
+  add \engine.out_row * 3'111 (4x3 bits, unsigned)
+Using template $paramod$08b2a3505d8f2cd2b03f068ccaf5ce95d4eb0556\_90_alu for cells of type $alu.
+  add \engine.acc (32 bits, signed)
+  add { $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:50$79_Y [31] $flatten\engine.$add$/openlane/designs/CNN_acc/src/conv_engine.v:50$79_Y [15:0] } (17 bits, signed)
+  add \input_sram.rd_data [23:16] * \kernel_sram.rd_data [23:16] (8x8 bits, signed)
+Using extmapper simplemap for cells of type $sdff.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000000100 for cells of type $lcu.
+Using extmapper simplemap for cells of type $xor.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000000001 for cells of type $lcu.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000100000 for cells of type $lcu.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000000101 for cells of type $lcu.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000001001 for cells of type $lcu.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000001000 for cells of type $lcu.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000010000 for cells of type $lcu.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000000011 for cells of type $lcu.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000000110 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000010001 for cells of type $fa.
+Using template $paramod$3bb72ad0665cdca279bbc49ed6a39f403f16497f\_90_alu for cells of type $alu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000111 for cells of type $fa.
+Using template $paramod$dbcdc7e8aa1a4080cea2deda6fdc8772064f4d90\_90_alu for cells of type $alu.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000000111 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000100000 for cells of type $fa.
+Using template $paramod$fbc7873bff55778c0b3173955b7e4bce1d9d6834\_90_alu for cells of type $alu.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000010001 for cells of type $lcu.
+No more expansions possible.
+<suppressed ~5752 debug messages>
+
+39. Executing OPT pass (performing simple optimizations).
+
+39.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module conv2d_accel.
+<suppressed ~2103 debug messages>
+
+39.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\conv2d_accel'.
+<suppressed ~3093 debug messages>
+Removed a total of 1031 cells.
+
+39.3. Executing OPT_DFF pass (perform DFF optimizations).
+Removing never-active SRST on $auto$ff.cc:266:slice$15625 ($_SDFF_PP0_) from module conv2d_accel.
+Removing never-active SRST on $auto$ff.cc:266:slice$15618 ($_SDFF_PP0_) from module conv2d_accel.
+Removing never-active SRST on $auto$ff.cc:266:slice$15619 ($_SDFF_PP0_) from module conv2d_accel.
+Removing never-active SRST on $auto$ff.cc:266:slice$15620 ($_SDFF_PP0_) from module conv2d_accel.
+Removing never-active SRST on $auto$ff.cc:266:slice$15621 ($_SDFF_PP0_) from module conv2d_accel.
+Removing never-active SRST on $auto$ff.cc:266:slice$15622 ($_SDFF_PP0_) from module conv2d_accel.
+Removing never-active SRST on $auto$ff.cc:266:slice$15623 ($_SDFF_PP0_) from module conv2d_accel.
+Removing never-active SRST on $auto$ff.cc:266:slice$15624 ($_SDFF_PP0_) from module conv2d_accel.
+
+39.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \conv2d_accel..
+Removed 2032 unused cells and 1770 unused wires.
+<suppressed ~2033 debug messages>
+
+39.5. Rerunning OPT passes. (Removed registers in this run.)
+
+39.6. Executing OPT_EXPR pass (perform const folding).
+Optimizing module conv2d_accel.
+<suppressed ~2 debug messages>
+
+39.7. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\conv2d_accel'.
+Removed a total of 0 cells.
+
+39.8. Executing OPT_DFF pass (perform DFF optimizations).
+
+39.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \conv2d_accel..
+Removed 2 unused cells and 4 unused wires.
+<suppressed ~3 debug messages>
+
+39.10. Finished fast OPT passes.
+
+40. Executing ABC pass (technology mapping using ABC).
+
+40.1. Extracting gate netlist of module `\conv2d_accel' to `<abc-temp-dir>/input.blif'..
+Extracted 9937 gates and 13788 wires to a netlist network with 3850 inputs and 592 outputs.
+
+40.1.1. Executing ABC.
+Running ABC command: "<yosys-exe-dir>/yosys-abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ABC command line: "source <abc-temp-dir>/abc.script".
+ABC: 
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: Entered genlib library with 13 gates from file "<abc-temp-dir>/stdcells.genlib".
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+40.1.2. Re-integrating ABC results.
+ABC RESULTS:               MUX cells:     7887
+ABC RESULTS:              XNOR cells:       43
+ABC RESULTS:               NOT cells:       54
+ABC RESULTS:               XOR cells:      223
+ABC RESULTS:               AND cells:      118
+ABC RESULTS:             ORNOT cells:       68
+ABC RESULTS:                OR cells:      645
+ABC RESULTS:               NOR cells:       32
+ABC RESULTS:              NAND cells:       60
+ABC RESULTS:            ANDNOT cells:      716
+ABC RESULTS:        internal signals:     9346
+ABC RESULTS:           input signals:     3850
+ABC RESULTS:          output signals:      592
+Removing temp directory.
+
+41. Executing OPT pass (performing simple optimizations).
+
+41.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module conv2d_accel.
+<suppressed ~1820 debug messages>
+
+41.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\conv2d_accel'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+41.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+41.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \conv2d_accel..
+Removed 10 unused cells and 6306 unused wires.
+<suppressed ~15 debug messages>
+
+41.5. Finished fast OPT passes.
+
+42. Executing HIERARCHY pass (managing design hierarchy).
+
+42.1. Analyzing design hierarchy..
+Top module:  \conv2d_accel
+
+42.2. Analyzing design hierarchy..
+Top module:  \conv2d_accel
+Removed 0 unused modules.
+
+43. Printing statistics.
+
+=== conv2d_accel ===
+
+   Number of wires:              10301
+   Number of wire bits:          14173
+   Number of public wires:         534
+   Number of public wire bits:    4299
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:              13671
+     $_ANDNOT_                     716
+     $_AND_                        118
+     $_DFFE_PN_                     16
+     $_DFFE_PP0N_                    4
+     $_DFFE_PP0P_                   44
+     $_DFFE_PP_                   3704
+     $_DFF_PP0_                     11
+     $_DFF_PP1_                      1
+     $_DFF_P_                        8
+     $_MUX_                       7887
+     $_NAND_                        60
+     $_NOR_                         31
+     $_NOT_                         44
+     $_ORNOT_                       68
+     $_OR_                         645
+     $_SDFF_PP0_                    48
+     $_XNOR_                        43
+     $_XOR_                        223
+
+44. Executing CHECK pass (checking for obvious problems).
+Checking module conv2d_accel...
+Found and reported 0 problems.
+
+45. Generating Graphviz representation of design.
+Writing dot description to `/openlane/designs/CNN_acc/runs/RUN_adjust2/tmp/synthesis/post_techmap.dot'.
+Dumping module conv2d_accel to page 1.
+
+46. Executing SHARE pass (SAT-based resource sharing).
+
+47. Executing OPT pass (performing simple optimizations).
+
+47.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module conv2d_accel.
+
+47.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\conv2d_accel'.
+Removed a total of 0 cells.
+
+47.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \conv2d_accel..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+47.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \conv2d_accel.
+Performed a total of 0 changes.
+
+47.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\conv2d_accel'.
+Removed a total of 0 cells.
+
+47.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+47.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \conv2d_accel..
+
+47.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module conv2d_accel.
+
+47.9. Finished OPT passes. (There is nothing left to do.)
+
+48. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \conv2d_accel..
+Removed 0 unused cells and 38 unused wires.
+<suppressed ~38 debug messages>
+
+49. Printing statistics.
+
+=== conv2d_accel ===
+
+   Number of wires:              10263
+   Number of wire bits:          13818
+   Number of public wires:         496
+   Number of public wire bits:    3944
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:              13671
+     $_ANDNOT_                     716
+     $_AND_                        118
+     $_DFFE_PN_                     16
+     $_DFFE_PP0N_                    4
+     $_DFFE_PP0P_                   44
+     $_DFFE_PP_                   3704
+     $_DFF_PP0_                     11
+     $_DFF_PP1_                      1
+     $_DFF_P_                        8
+     $_MUX_                       7887
+     $_NAND_                        60
+     $_NOR_                         31
+     $_NOT_                         44
+     $_ORNOT_                       68
+     $_OR_                         645
+     $_SDFF_PP0_                    48
+     $_XNOR_                        43
+     $_XOR_                        223
+
+mapping tbuf
+
+50. Executing TECHMAP pass (map to technology primitives).
+
+50.1. Executing Verilog-2005 frontend: /home/vhoang/.ciel/sky130A/libs.tech/openlane/sky130_fd_sc_hd/tribuff_map.v
+Parsing Verilog input from `/home/vhoang/.ciel/sky130A/libs.tech/openlane/sky130_fd_sc_hd/tribuff_map.v' to AST representation.
+Generating RTLIL representation for module `\$_TBUF_'.
+Successfully finished Verilog frontend.
+
+50.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~3 debug messages>
+
+51. Executing SIMPLEMAP pass (map simple cells to gate primitives).
+
+52. Executing TECHMAP pass (map to technology primitives).
+
+52.1. Executing Verilog-2005 frontend: /home/vhoang/.ciel/sky130A/libs.tech/openlane/sky130_fd_sc_hd/latch_map.v
+Parsing Verilog input from `/home/vhoang/.ciel/sky130A/libs.tech/openlane/sky130_fd_sc_hd/latch_map.v' to AST representation.
+Generating RTLIL representation for module `\$_DLATCH_P_'.
+Generating RTLIL representation for module `\$_DLATCH_N_'.
+Successfully finished Verilog frontend.
+
+52.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~4 debug messages>
+
+53. Executing SIMPLEMAP pass (map simple cells to gate primitives).
+
+54. Executing DFFLIBMAP pass (mapping DFF cells to sequential cells from liberty file).
+  cell sky130_fd_sc_hd__dfxtp_2 (noninv, pins=3, area=21.27) is a direct match for cell type $_DFF_P_.
+  cell sky130_fd_sc_hd__dfrtp_2 (noninv, pins=4, area=26.28) is a direct match for cell type $_DFF_PN0_.
+  cell sky130_fd_sc_hd__dfstp_2 (noninv, pins=4, area=26.28) is a direct match for cell type $_DFF_PN1_.
+  cell sky130_fd_sc_hd__dfbbn_2 (noninv, pins=6, area=35.03) is a direct match for cell type $_DFFSR_NNN_.
+  final dff cell mappings:
+    unmapped dff cell: $_DFF_N_
+    \sky130_fd_sc_hd__dfxtp_2 _DFF_P_ (.CLK( C), .D( D), .Q( Q));
+    unmapped dff cell: $_DFF_NN0_
+    unmapped dff cell: $_DFF_NN1_
+    unmapped dff cell: $_DFF_NP0_
+    unmapped dff cell: $_DFF_NP1_
+    \sky130_fd_sc_hd__dfrtp_2 _DFF_PN0_ (.CLK( C), .D( D), .Q( Q), .RESET_B( R));
+    \sky130_fd_sc_hd__dfstp_2 _DFF_PN1_ (.CLK( C), .D( D), .Q( Q), .SET_B( R));
+    unmapped dff cell: $_DFF_PP0_
+    unmapped dff cell: $_DFF_PP1_
+    \sky130_fd_sc_hd__dfbbn_2 _DFFSR_NNN_ (.CLK_N( C), .D( D), .Q( Q), .Q_N(~Q), .RESET_B( R), .SET_B( S));
+    unmapped dff cell: $_DFFSR_NNP_
+    unmapped dff cell: $_DFFSR_NPN_
+    unmapped dff cell: $_DFFSR_NPP_
+    unmapped dff cell: $_DFFSR_PNN_
+    unmapped dff cell: $_DFFSR_PNP_
+    unmapped dff cell: $_DFFSR_PPN_
+    unmapped dff cell: $_DFFSR_PPP_
+
+54.1. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+Mapping DFF cells in module `\conv2d_accel':
+  mapped 59 $_DFF_PN0_ cells to \sky130_fd_sc_hd__dfrtp_2 cells.
+  mapped 1 $_DFF_PN1_ cells to \sky130_fd_sc_hd__dfstp_2 cells.
+  mapped 3776 $_DFF_P_ cells to \sky130_fd_sc_hd__dfxtp_2 cells.
+
+55. Printing statistics.
+
+=== conv2d_accel ===
+
+   Number of wires:              14139
+   Number of wire bits:          17694
+   Number of public wires:         496
+   Number of public wire bits:    3944
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:              17547
+     $_ANDNOT_                     716
+     $_AND_                        118
+     $_MUX_                      11703
+     $_NAND_                        60
+     $_NOR_                         31
+     $_NOT_                        104
+     $_ORNOT_                       68
+     $_OR_                         645
+     $_XNOR_                        43
+     $_XOR_                        223
+     sky130_fd_sc_hd__dfrtp_2       59
+     sky130_fd_sc_hd__dfstp_2        1
+     sky130_fd_sc_hd__dfxtp_2     3776
+
+[INFO]: USING STRATEGY DELAY 0
+
+56. Executing ABC pass (technology mapping using ABC).
+
+56.1. Extracting gate netlist of module `\conv2d_accel' to `/tmp/yosys-abc-omBFZF/input.blif'..
+Extracted 13711 gates and 17587 wires to a netlist network with 3875 inputs and 3891 outputs.
+
+56.1.1. Executing ABC.
+Running ABC command: "/build/bin/yosys-abc" -s -f /tmp/yosys-abc-omBFZF/abc.script 2>&1
+ABC: ABC command line: "source /tmp/yosys-abc-omBFZF/abc.script".
+ABC: 
+ABC: + read_blif /tmp/yosys-abc-omBFZF/input.blif 
+ABC: + read_lib -w /openlane/designs/CNN_acc/runs/RUN_adjust2/tmp/synthesis/trimmed.lib 
+ABC: Parsing finished successfully.  Parsing time =     0.03 sec
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfbbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfsbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_2".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_4".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_8".
+ABC: Library "sky130A_merged" from "/openlane/designs/CNN_acc/runs/RUN_adjust2/tmp/synthesis/trimmed.lib" has 175 cells (17 skipped: 14 seq; 3 tri-state; 0 no func; 0 dont_use).  Time =     0.06 sec
+ABC: Memory =    9.54 MB. Time =     0.06 sec
+ABC: Warning: Detected 2 multi-output gates (for example, "sky130_fd_sc_hd__fa_1").
+ABC: + read_constr -v /openlane/designs/CNN_acc/runs/RUN_adjust2/tmp/synthesis/synthesis.sdc 
+ABC: Setting driving cell to be "sky130_fd_sc_hd__inv_2".
+ABC: Setting output load to be 33.442001.
+ABC: + read_constr /openlane/designs/CNN_acc/runs/RUN_adjust2/tmp/synthesis/synthesis.sdc 
+ABC: + fx 
+ABC: + mfs 
+ABC: + strash 
+ABC: + refactor 
+ABC: + balance 
+ABC: + rewrite 
+ABC: + refactor 
+ABC: + balance 
+ABC: + rewrite 
+ABC: + rewrite -z 
+ABC: + balance 
+ABC: + refactor -z 
+ABC: + rewrite -z 
+ABC: + balance 
+ABC: + retime -D -D 10000.0 -M 6 
+ABC: + scleanup 
+ABC: Error: The network is combinational.
+ABC: + map -p -B 0.2 -A 0.9 -M 0 
+ABC: The cell areas are multiplied by the factor: <num_fanins> ^ (0.90).
+ABC: The cell delays are multiplied by the factor: <num_fanins> ^ (0.20).
+ABC: + retime -D -D 10000.0 
+ABC: + &get -n 
+ABC: + &st 
+ABC: + &dch 
+ABC: + &nf 
+ABC: + &put 
+ABC: + buffer -N 10 -S 750.0 
+ABC: + upsize -D 10000.0 
+ABC: Current delay (5476.42 ps) does not exceed the target delay (10000.00 ps). Upsizing is not performed.
+ABC: + dnsize -D 10000.0 
+ABC: + stime -p 
+ABC: WireLoad = "none"  Gates =  16096 ( 34.9 %)   Cap = 11.8 ff ( 13.2 %)   Area =   147953.16 ( 56.1 %)   Delay =  5703.80 ps  (  0.7 %)               
+ABC: Path  0 --      74 : 0    9 pi                         A =   0.00  Df =  95.6  -51.9 ps  S = 140.7 ps  Cin =  0.0 ff  Cout =  29.6 ff  Cmax =   0.0 ff  G =    0  
+ABC: Path  1 --    8031 : 1   10 sky130_fd_sc_hd__buf_1     A =   3.75  Df = 465.9 -196.8 ps  S = 430.0 ps  Cin =  2.1 ff  Cout =  36.3 ff  Cmax = 130.0 ff  G = 1654  
+ABC: Path  2 --    8055 : 4    6 sky130_fd_sc_hd__a22oi_2   A =  12.51  Df = 652.4  -15.8 ps  S = 346.9 ps  Cin =  4.3 ff  Cout =  23.4 ff  Cmax = 170.3 ff  G =  517  
+ABC: Path  3 --    8066 : 4    3 sky130_fd_sc_hd__o31a_2    A =  10.01  Df =1009.9 -157.3 ps  S =  82.2 ps  Cin =  2.3 ff  Cout =  12.0 ff  Cmax = 285.7 ff  G =  492  
+ABC: Path  4 --    8124 : 5    2 sky130_fd_sc_hd__o32a_2    A =  11.26  Df =1411.2 -122.8 ps  S =  64.1 ps  Cin =  2.3 ff  Cout =   7.1 ff  Cmax = 300.3 ff  G =  287  
+ABC: Path  5 --    8129 : 5    5 sky130_fd_sc_hd__o311a_2   A =  11.26  Df =1859.1  -66.2 ps  S = 120.6 ps  Cin =  2.4 ff  Cout =  19.4 ff  Cmax = 293.9 ff  G =  782  
+ABC: Path  6 --    8133 : 4    1 sky130_fd_sc_hd__o211ai_2  A =  12.51  Df =2191.2 -149.5 ps  S = 135.5 ps  Cin =  4.4 ff  Cout =   5.1 ff  Cmax = 133.7 ff  G =  110  
+ABC: Path  7 --    8158 : 3    3 sky130_fd_sc_hd__a21oi_2   A =   8.76  Df =2416.1 -276.6 ps  S = 198.4 ps  Cin =  4.6 ff  Cout =  13.9 ff  Cmax = 128.2 ff  G =  288  
+ABC: Path  8 --    8333 : 3    3 sky130_fd_sc_hd__o21ai_2   A =   8.76  Df =2512.0 -195.0 ps  S = 163.7 ps  Cin =  4.5 ff  Cout =  10.5 ff  Cmax = 139.2 ff  G =  223  
+ABC: Path  9 --    8334 : 3    2 sky130_fd_sc_hd__o21bai_2  A =  11.26  Df =2729.7  -90.9 ps  S = 152.8 ps  Cin =  3.4 ff  Cout =   9.1 ff  Cmax = 140.1 ff  G =  257  
+ABC: Path 10 --    8339 : 4    7 sky130_fd_sc_hd__a22oi_2   A =  12.51  Df =3051.8 -224.8 ps  S = 400.6 ps  Cin =  4.3 ff  Cout =  28.4 ff  Cmax = 170.3 ff  G =  620  
+ABC: Path 11 --    8365 : 4    7 sky130_fd_sc_hd__o211a_2   A =  10.01  Df =3490.4   -9.1 ps  S = 192.0 ps  Cin =  2.4 ff  Cout =  31.0 ff  Cmax = 268.3 ff  G = 1250  
+ABC: Path 12 --    8480 : 4    6 sky130_fd_sc_hd__o211ai_2  A =  12.51  Df =3854.9  -32.5 ps  S = 347.9 ps  Cin =  4.4 ff  Cout =  25.4 ff  Cmax = 133.7 ff  G =  562  
+ABC: Path 13 --    8504 : 5    4 sky130_fd_sc_hd__o221a_2   A =  11.26  Df =4144.7  -73.4 ps  S = 126.1 ps  Cin =  2.3 ff  Cout =  19.4 ff  Cmax = 281.1 ff  G =  780  
+ABC: Path 14 --    8576 : 3    2 sky130_fd_sc_hd__o21bai_2  A =  11.26  Df =4255.3   -9.9 ps  S = 153.4 ps  Cin =  3.4 ff  Cout =   9.2 ff  Cmax = 140.1 ff  G =  261  
+ABC: Path 15 --    8578 : 4    3 sky130_fd_sc_hd__o2bb2ai_2 A =  15.01  Df =4403.8  -12.7 ps  S = 177.7 ps  Cin =  4.6 ff  Cout =  11.3 ff  Cmax = 134.6 ff  G =  237  
+ABC: Path 16 --    8611 : 5    7 sky130_fd_sc_hd__o221a_2   A =  11.26  Df =4706.2 -131.3 ps  S = 160.1 ps  Cin =  2.3 ff  Cout =  26.2 ff  Cmax = 281.1 ff  G = 1059  
+ABC: Path 17 --    8650 : 4    3 sky130_fd_sc_hd__o22ai_2   A =  12.51  Df =4815.0  -74.6 ps  S = 201.3 ps  Cin =  4.3 ff  Cout =  11.8 ff  Cmax = 137.3 ff  G =  263  
+ABC: Path 18 --    8727 : 3    2 sky130_fd_sc_hd__a21oi_2   A =   8.76  Df =5008.7 -169.4 ps  S = 146.9 ps  Cin =  4.6 ff  Cout =   9.0 ff  Cmax = 128.2 ff  G =  188  
+ABC: Path 19 --    8728 : 4    3 sky130_fd_sc_hd__o22ai_2   A =  12.51  Df =5137.5   -9.1 ps  S = 202.5 ps  Cin =  4.3 ff  Cout =  11.9 ff  Cmax = 137.3 ff  G =  257  
+ABC: Path 20 --    8747 : 5    1 sky130_fd_sc_hd__a32o_2    A =  11.26  Df =5366.2  -80.2 ps  S =  43.9 ps  Cin =  2.3 ff  Cout =   2.4 ff  Cmax = 264.6 ff  G =  100  
+ABC: Path 21 --    8748 : 5    1 sky130_fd_sc_hd__a32o_2    A =  11.26  Df =5703.8 -129.7 ps  S = 207.7 ps  Cin =  2.3 ff  Cout =  33.4 ff  Cmax = 264.6 ff  G = 1430  
+ABC: Start-point = pi73 (\engine.k_p[0] [3]).  End-point = po32 ($auto$rtlil.cc:2607:MuxGate$38643).
+ABC: + print_stats -m 
+ABC: netlist                       : i/o = 3875/ 3891  lat =    0  nd = 16096  edge =  43765  area =60920.41  delay =3082.94  lev = 31
+ABC: + write_blif /tmp/yosys-abc-omBFZF/output.blif 
+
+56.1.2. Re-integrating ABC results.
+ABC RESULTS:   sky130_fd_sc_hd__a32oi_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__nor3b_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__o2111ai_2 cells:        5
+ABC RESULTS:   sky130_fd_sc_hd__o2bb2ai_2 cells:       18
+ABC RESULTS:   sky130_fd_sc_hd__a221oi_2 cells:        4
+ABC RESULTS:   sky130_fd_sc_hd__a2bb2oi_2 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__a22oi_2 cells:       43
+ABC RESULTS:   sky130_fd_sc_hd__o41ai_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o221ai_2 cells:        8
+ABC RESULTS:   sky130_fd_sc_hd__a311oi_2 cells:        7
+ABC RESULTS:   sky130_fd_sc_hd__o31ai_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__xor2_2 cells:       13
+ABC RESULTS:   sky130_fd_sc_hd__o21bai_2 cells:       26
+ABC RESULTS:   sky130_fd_sc_hd__xnor2_2 cells:       16
+ABC RESULTS:   sky130_fd_sc_hd__o32ai_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__o221a_2 cells:       95
+ABC RESULTS:   sky130_fd_sc_hd__a31oi_2 cells:        9
+ABC RESULTS:   sky130_fd_sc_hd__a2111o_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o2bb2a_2 cells:        9
+ABC RESULTS:   sky130_fd_sc_hd__nor2b_2 cells:        4
+ABC RESULTS:   sky130_fd_sc_hd__o2111a_2 cells:       11
+ABC RESULTS:   sky130_fd_sc_hd__a221o_2 cells:      301
+ABC RESULTS:   sky130_fd_sc_hd__o311a_2 cells:       45
+ABC RESULTS:   sky130_fd_sc_hd__a311o_2 cells:       36
+ABC RESULTS:   sky130_fd_sc_hd__a21bo_2 cells:       14
+ABC RESULTS:   sky130_fd_sc_hd__nand3b_2 cells:       14
+ABC RESULTS:   sky130_fd_sc_hd__and3b_2 cells:       16
+ABC RESULTS:   sky130_fd_sc_hd__nand2b_2 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__nor4b_2 cells:        4
+ABC RESULTS:   sky130_fd_sc_hd__or2b_2 cells:       23
+ABC RESULTS:   sky130_fd_sc_hd__and4bb_2 cells:       14
+ABC RESULTS:   sky130_fd_sc_hd__nor3_2 cells:       19
+ABC RESULTS:   sky130_fd_sc_hd__nand4b_2 cells:        6
+ABC RESULTS:   sky130_fd_sc_hd__and2_2 cells:       27
+ABC RESULTS:   sky130_fd_sc_hd__and4b_2 cells:       44
+ABC RESULTS:   sky130_fd_sc_hd__a41o_2 cells:       12
+ABC RESULTS:   sky130_fd_sc_hd__o41a_2 cells:        5
+ABC RESULTS:   sky130_fd_sc_hd__inv_2 cells:       97
+ABC RESULTS:   sky130_fd_sc_hd__o211ai_2 cells:       56
+ABC RESULTS:   sky130_fd_sc_hd__o31a_2 cells:       84
+ABC RESULTS:   sky130_fd_sc_hd__o22ai_2 cells:       19
+ABC RESULTS:   sky130_fd_sc_hd__o21ba_2 cells:        7
+ABC RESULTS:   sky130_fd_sc_hd__a21oi_2 cells:       97
+ABC RESULTS:   sky130_fd_sc_hd__o21a_2 cells:      132
+ABC RESULTS:   sky130_fd_sc_hd__a211oi_2 cells:       22
+ABC RESULTS:   sky130_fd_sc_hd__o32a_2 cells:       11
+ABC RESULTS:   sky130_fd_sc_hd__a211o_2 cells:      190
+ABC RESULTS:   sky130_fd_sc_hd__o21ai_2 cells:      107
+ABC RESULTS:   sky130_fd_sc_hd__o211a_2 cells:      494
+ABC RESULTS:   sky130_fd_sc_hd__a21o_2 cells:      219
+ABC RESULTS:   sky130_fd_sc_hd__and2b_2 cells:      182
+ABC RESULTS:   sky130_fd_sc_hd__o22a_2 cells:      180
+ABC RESULTS:   sky130_fd_sc_hd__mux4_2 cells:     1445
+ABC RESULTS:   sky130_fd_sc_hd__or4bb_2 cells:       10
+ABC RESULTS:   sky130_fd_sc_hd__a2bb2o_2 cells:       49
+ABC RESULTS:   sky130_fd_sc_hd__nor4_2 cells:        7
+ABC RESULTS:   sky130_fd_sc_hd__or2_2 cells:      161
+ABC RESULTS:   sky130_fd_sc_hd__or3b_2 cells:      144
+ABC RESULTS:   sky130_fd_sc_hd__a22o_2 cells:       63
+ABC RESULTS:   sky130_fd_sc_hd__or4b_2 cells:       28
+ABC RESULTS:   sky130_fd_sc_hd__nand2_2 cells:      171
+ABC RESULTS:   sky130_fd_sc_hd__nor2_2 cells:       72
+ABC RESULTS:   sky130_fd_sc_hd__a21boi_2 cells:       20
+ABC RESULTS:   sky130_fd_sc_hd__a31o_2 cells:      216
+ABC RESULTS:   sky130_fd_sc_hd__nand3_2 cells:      103
+ABC RESULTS:   sky130_fd_sc_hd__and4_2 cells:       78
+ABC RESULTS:   sky130_fd_sc_hd__a32o_2 cells:       88
+ABC RESULTS:   sky130_fd_sc_hd__or3_2 cells:      100
+ABC RESULTS:   sky130_fd_sc_hd__and3_2 cells:      266
+ABC RESULTS:   sky130_fd_sc_hd__nand4_2 cells:       59
+ABC RESULTS:   sky130_fd_sc_hd__or4_2 cells:       75
+ABC RESULTS:   sky130_fd_sc_hd__mux2_2 cells:     4661
+ABC RESULTS:   sky130_fd_sc_hd__buf_1 cells:     5520
+ABC RESULTS:        internal signals:     9821
+ABC RESULTS:           input signals:     3875
+ABC RESULTS:          output signals:     3891
+Removing temp directory.
+
+57. Executing SETUNDEF pass (replace undef values with defined constants).
+
+58. Executing HILOMAP pass (mapping to constant drivers).
+
+59. Executing SPLITNETS pass (splitting up multi-bit signals).
+
+60. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \conv2d_accel..
+Removed 16 unused cells and 17705 unused wires.
+<suppressed ~81 debug messages>
+
+61. Executing INSBUF pass (insert buffer cells for connected wires).
+
+62. Executing CHECK pass (checking for obvious problems).
+Checking module conv2d_accel...
+Warning: Wire conv2d_accel.\wr_ready is used but has no driver.
+Warning: Wire conv2d_accel.\rd_valid is used but has no driver.
+Warning: Wire conv2d_accel.\rd_data [7] is used but has no driver.
+Warning: Wire conv2d_accel.\rd_data [6] is used but has no driver.
+Warning: Wire conv2d_accel.\rd_data [5] is used but has no driver.
+Warning: Wire conv2d_accel.\rd_data [4] is used but has no driver.
+Warning: Wire conv2d_accel.\rd_data [3] is used but has no driver.
+Warning: Wire conv2d_accel.\rd_data [2] is used but has no driver.
+Warning: Wire conv2d_accel.\rd_data [1] is used but has no driver.
+Warning: Wire conv2d_accel.\rd_data [0] is used but has no driver.
+Found and reported 10 problems.
+
+63. Printing statistics.
+
+=== conv2d_accel ===
+
+   Number of wires:              19932
+   Number of wire bits:          19976
+   Number of public wires:        3836
+   Number of public wire bits:    3880
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:              19932
+     sky130_fd_sc_hd__a2111o_2       1
+     sky130_fd_sc_hd__a211o_2      190
+     sky130_fd_sc_hd__a211oi_2      22
+     sky130_fd_sc_hd__a21bo_2       14
+     sky130_fd_sc_hd__a21boi_2      20
+     sky130_fd_sc_hd__a21o_2       219
+     sky130_fd_sc_hd__a21oi_2       97
+     sky130_fd_sc_hd__a221o_2      301
+     sky130_fd_sc_hd__a221oi_2       4
+     sky130_fd_sc_hd__a22o_2        63
+     sky130_fd_sc_hd__a22oi_2       43
+     sky130_fd_sc_hd__a2bb2o_2      49
+     sky130_fd_sc_hd__a2bb2oi_2      3
+     sky130_fd_sc_hd__a311o_2       36
+     sky130_fd_sc_hd__a311oi_2       7
+     sky130_fd_sc_hd__a31o_2       216
+     sky130_fd_sc_hd__a31oi_2        9
+     sky130_fd_sc_hd__a32o_2        88
+     sky130_fd_sc_hd__a32oi_2        1
+     sky130_fd_sc_hd__a41o_2        12
+     sky130_fd_sc_hd__and2_2        27
+     sky130_fd_sc_hd__and2b_2      182
+     sky130_fd_sc_hd__and3_2       266
+     sky130_fd_sc_hd__and3b_2       16
+     sky130_fd_sc_hd__and4_2        78
+     sky130_fd_sc_hd__and4b_2       44
+     sky130_fd_sc_hd__and4bb_2      14
+     sky130_fd_sc_hd__buf_1       5520
+     sky130_fd_sc_hd__dfrtp_2       59
+     sky130_fd_sc_hd__dfstp_2        1
+     sky130_fd_sc_hd__dfxtp_2     3776
+     sky130_fd_sc_hd__inv_2         97
+     sky130_fd_sc_hd__mux2_2      4661
+     sky130_fd_sc_hd__mux4_2      1445
+     sky130_fd_sc_hd__nand2_2      171
+     sky130_fd_sc_hd__nand2b_2       3
+     sky130_fd_sc_hd__nand3_2      103
+     sky130_fd_sc_hd__nand3b_2      14
+     sky130_fd_sc_hd__nand4_2       59
+     sky130_fd_sc_hd__nand4b_2       6
+     sky130_fd_sc_hd__nor2_2        72
+     sky130_fd_sc_hd__nor2b_2        4
+     sky130_fd_sc_hd__nor3_2        19
+     sky130_fd_sc_hd__nor3b_2        2
+     sky130_fd_sc_hd__nor4_2         7
+     sky130_fd_sc_hd__nor4b_2        4
+     sky130_fd_sc_hd__o2111a_2      11
+     sky130_fd_sc_hd__o2111ai_2      5
+     sky130_fd_sc_hd__o211a_2      494
+     sky130_fd_sc_hd__o211ai_2      56
+     sky130_fd_sc_hd__o21a_2       132
+     sky130_fd_sc_hd__o21ai_2      107
+     sky130_fd_sc_hd__o21ba_2        7
+     sky130_fd_sc_hd__o21bai_2      26
+     sky130_fd_sc_hd__o221a_2       95
+     sky130_fd_sc_hd__o221ai_2       8
+     sky130_fd_sc_hd__o22a_2       180
+     sky130_fd_sc_hd__o22ai_2       19
+     sky130_fd_sc_hd__o2bb2a_2       9
+     sky130_fd_sc_hd__o2bb2ai_2     18
+     sky130_fd_sc_hd__o311a_2       45
+     sky130_fd_sc_hd__o31a_2        84
+     sky130_fd_sc_hd__o31ai_2        2
+     sky130_fd_sc_hd__o32a_2        11
+     sky130_fd_sc_hd__o32ai_2        2
+     sky130_fd_sc_hd__o41a_2         5
+     sky130_fd_sc_hd__o41ai_2        1
+     sky130_fd_sc_hd__or2_2        161
+     sky130_fd_sc_hd__or2b_2        23
+     sky130_fd_sc_hd__or3_2        100
+     sky130_fd_sc_hd__or3b_2       144
+     sky130_fd_sc_hd__or4_2         75
+     sky130_fd_sc_hd__or4b_2        28
+     sky130_fd_sc_hd__or4bb_2       10
+     sky130_fd_sc_hd__xnor2_2       16
+     sky130_fd_sc_hd__xor2_2        13
+
+   Chip area for module '\conv2d_accel': 229846.691200
+
+64. Executing Verilog backend.
+Dumping module `\conv2d_accel'.
+
+Warnings: 10 unique messages, 10 total
+End of script. Logfile hash: 15dfb2dc1c, CPU: user 10.18s system 0.20s, MEM: 87.66 MB peak
+Yosys 0.30+48 (git sha1 14d50a176d5, gcc 8.3.1 -fPIC -Os)
+Time spent: 57% 2x abc (13 sec), 12% 2x write_verilog (2 sec), ...
