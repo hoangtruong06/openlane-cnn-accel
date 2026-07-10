@@ -37,7 +37,7 @@ set ::env(SYNTH_STRATEGY) "DELAY 0"
 
 # Core utilization percentage. 
 # Set to 20% to leave plenty of empty routing tracks for the dense multiplier matrix.
-set ::env(FP_CORE_UTIL) 20
+set ::env(FP_CORE_UTIL) 22
 
 # Shape of the chip.
 set ::env(FP_ASPECT_RATIO) 1.0
@@ -48,10 +48,10 @@ set ::env(FP_ASPECT_RATIO) 1.0
 
 # Target density for standard cell placement. 
 # Aligned at 0.25 to prevent cells from packing too tightly and causing routing blocks.
-set ::env(PL_TARGET_DENSITY) 0.25
+set ::env(PL_TARGET_DENSITY) 0.3
 
 # Increase padding between standard cells (Create space for wire routing)
-set ::env(CELL_PAD) 4
+set ::env(CELL_PAD) 2
 
 # Pre-define congestion levels to help the tool detour
 set ::env(GLB_ADJUSTMENT) 0.2
@@ -67,7 +67,8 @@ set ::env(GLB_RESIZER_TIMING_OPTIMIZATIONS) 1
 set ::env(RT_MAX_LAYER) "met5"
 
 # Enables automatic hold time fixing by inserting delay cells during the routing phase
-set ::env(GLB_RESIZER_HOLD_SLACK_MARGIN) 0.05
+set ::env(GLB_RESIZER_HOLD_SLACK_MARGIN) 0.1
+set ::env(PL_RESIZER_HOLD_SLACK_MARGIN) 0.1
 
 # ========================================================================
 # 7. FLOW CONTROL & DEBUGGING
@@ -75,3 +76,7 @@ set ::env(GLB_RESIZER_HOLD_SLACK_MARGIN) 0.05
 
 # Set to 0 to prevent the flow from crashing midway if there are minor timing violations.
 set ::env(QUIT_ON_TIMING_VIOLATIONS) 0
+set ::env(GRT_REPAIR_ANTENNAS) 1
+set ::env(RUN_HEURISTIC_DIODE_INSERTION) 1
+set ::env(DIODE_ON_PORTS) "both"
+set ::env(GLB_MAX_DIODE_INS_ITERS) 10
