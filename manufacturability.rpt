@@ -1,0 +1,19 @@
+Design Name: conv2d_accel
+Run Directory: /openlane/designs/CNN_acc/runs/RUN_deg_final
+----------------------------------------
+
+Magic DRC Summary:
+Source: /openlane/designs/CNN_acc/runs/RUN_deg_final/reports/signoff/drc.rpt
+Total Magic DRC violations is 0
+----------------------------------------
+
+LVS Summary:
+Source: /openlane/designs/CNN_acc/runs/RUN_deg_final/logs/signoff/43-conv2d_accel.lef.lvs.log
+Number of nets: 23552                      |Number of nets: 23552                      
+Design is LVS clean.
+----------------------------------------
+
+Antenna Summary:
+Source: /openlane/designs/CNN_acc/runs/RUN_deg_final/logs/signoff/45-arc.log
+Pin violations: 36
+Net violations: 36
