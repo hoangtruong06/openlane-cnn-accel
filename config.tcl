@@ -36,7 +36,7 @@ set ::env(SYNTH_STRATEGY) "DELAY 0"
 # ========================================================================
 
 # Core utilization percentage. 
-# Set to 20% to leave plenty of empty routing tracks for the dense multiplier matrix.
+# Set to 22% to leave plenty of empty routing tracks for the dense multiplier matrix.
 set ::env(FP_CORE_UTIL) 22
 
 # Shape of the chip.
@@ -47,7 +47,7 @@ set ::env(FP_ASPECT_RATIO) 1.0
 # ========================================================================
 
 # Target density for standard cell placement. 
-# Aligned at 0.25 to prevent cells from packing too tightly and causing routing blocks.
+# Aligned at 0.3 to prevent cells from packing too tightly and causing routing blocks.
 set ::env(PL_TARGET_DENSITY) 0.3
 
 # Increase padding between standard cells (Create space for wire routing)
